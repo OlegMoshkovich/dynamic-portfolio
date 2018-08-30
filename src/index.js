@@ -6,26 +6,29 @@ import registerServiceWorker from './registerServiceWorker';
 
 
 function SquareImage(props){
-    // console.log(`in the image `)
+    console.log(`the window height -- ${props.value.width}`)
     return (
-      <button className="square" onClick = {props.onClick}>
-      <img className = "image"
-        src = {require(`./images/project${props.value.projectnumber}/image${props.value.imagenumber}.jpeg`)}
+      <button style = {{width:props.value.width/2, height:props.value.height-300}} className="square" onClick = {props.onClick}>
+      <img className = "image" style = {{width:props.value.width/2-50, height:props.value.width/2-50}}
+        src = {require(`./images/image/project${props.value.projectnumber}/image${props.value.imagenumber}.jpeg`)}
       />
       </button>
     );
 }
 function SquareText(props){
+  console.log(`in the sqiuare text function -- ${props.value}`)
     return (
-      <button className="square" onClick = {props.onClick}>
-      {props.value}
+      <button style = {{width:props.value.width/2, height:props.value.height-300}} className="square" onClick = {props.onClick}>
+      <img className = "image" style = {{width:props.value.width/2-50, height:props.value.width/2-50}}
+        src = {require(`./images/text/project${props.value.projectnumber}/image${props.value.textnumber}.jpeg`)}
+      />
       </button>
     );
 }
 function SquareProject(props){
     return (
       <button className="square" onClick = {props.onClick}>
-      {props.value}
+      {props.value.projectnumber}
       </button>
     );
 }
@@ -37,15 +40,29 @@ class Board extends React.Component {
       textnumber:1,
       imagenumber:1,
       projectnumber:0,
+      width: 0,
+      height: 0
 
     };
-
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
+  componentDidMount() {
+  this.updateWindowDimensions();
+  window.addEventListener('resize', this.updateWindowDimensions);
+  }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+  }
 
   handleClick(square){
-    const imageQuantity = 2;
+    const imageQuantity = 4;
+    const textQuantity = 2;
     const projectQuantity = 3;
 
     if(square == 'image'){
@@ -60,10 +77,17 @@ class Board extends React.Component {
           })
         }
       }else if(square == 'text'){
+
           // console.log('I am in the handleClick and I received' + square)
           this.setState({
           textnumber:this.state.textnumber+1
         })
+        if(this.state.textnumber == textQuantity ){
+          console.log( `I am in the special loop for the text ${this.state.textnumber}` )
+          this.setState({
+          textnumber:1
+          })
+        }
       }else{
         console.log('I am in the handleClick and I received' + square )
           this.setState({
@@ -90,7 +114,7 @@ class Board extends React.Component {
       if(type == 'text'){
         // console.log('I am in renderS' + type)
         return (
-          <SquareText value = {this.state.textnumber}
+          <SquareText value = {this.state}
           onClick={() => this.handleClick('text')}
         />
         )
@@ -98,7 +122,7 @@ class Board extends React.Component {
       if(type == 'project'){
         // console.log('I am in renderS' + type)
         return (
-          <SquareProject value = {this.state.projectnumber}
+          <SquareProject value = {this.state}
           onClick={() => this.handleClick('project')}
         />
         )
@@ -106,14 +130,15 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = 'Oleg Moshkovich';
+    const status = '';
     return (
-      <div>
+      <div style = {{width:this.state.width, height:this.state.height}}>
         <div className="status">{status}</div>
+
         <div className="board-row">
           {this.renderSquare('image')}
           {this.renderSquare('text')}
-          {this.renderSquare('project')}
+
         </div>
 
 
