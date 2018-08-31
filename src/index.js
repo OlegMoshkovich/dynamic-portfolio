@@ -4,8 +4,8 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-const widthConstant = 40;
-const heightConstant = 140;
+const widthConstant = 50;
+const heightConstant = 50;
 
 function SquareImage(props){
     const imageWidth = props.value.width/2-widthConstant;
@@ -29,18 +29,7 @@ function SquareText(props){
       />
       </button>
 
-      <button  className="square" onClick = {props.onClick}
-      style ={{
 
-        'margin-left': 0
-
-      }}>
-
-      <img style ={{width:600}}
-        src = {require(`./images/icons/project.jpeg`)}
-      />
-
-      </button>
       </div>
 
 
@@ -51,8 +40,8 @@ function SquareProject(props){
 
         return (
           <button  className="square" onClick = {props.onClick}>
-          <img style ={{width:200}}
-            src = {require(`./images/icons/project.jpeg`)}
+          <img style ={{width:80}}
+            src = {require(`./images/icons/project.png`)}
           />
 
           </button>
@@ -168,6 +157,11 @@ class Board extends React.Component {
           }}>
           {this.renderSquare('image')}
           {this.renderSquare('text')}
+
+          <div style ={{'position':'absolute','margin-top':250, 'margin-left':610,'background':'transparent'}} >
+          {this.renderSquare('project')}
+          </div>
+
 
         </div>
     );
