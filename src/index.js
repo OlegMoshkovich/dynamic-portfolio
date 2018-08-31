@@ -4,32 +4,60 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
+const widthConstant = 40;
+const heightConstant = 140;
 
 function SquareImage(props){
-    console.log(`the window height -- ${props.value.width}`)
+    const imageWidth = props.value.width/2-widthConstant;
+
     return (
-      <button style = {{width:props.value.width/2, height:props.value.height-300}} className="square" onClick = {props.onClick}>
-      <img className = "image" style = {{width:props.value.width/2-50, height:props.value.width/2-50}}
+      <button className="square" onClick = {props.onClick}  style = {{width:imageWidth, height:imageWidth}}>
+      <img className = "image" style = {{width:imageWidth, height:imageWidth}}
         src = {require(`./images/image/project${props.value.projectnumber}/image${props.value.imagenumber}.jpeg`)}
       />
       </button>
     );
 }
 function SquareText(props){
-  console.log(`in the sqiuare text function -- ${props.value}`)
+  const imageWidth = props.value.width/2-widthConstant;
+  const imageHeight = props.value.width/2-heightConstant;
     return (
-      <button style = {{width:props.value.width/2, height:props.value.height-300}} className="square" onClick = {props.onClick}>
-      <img className = "image" style = {{width:props.value.width/2-50, height:props.value.width/2-50}}
+      <div>
+      <button  className="square" style = {{width:imageWidth, height:imageHeight}} onClick = {props.onClick} >
+      <img className = "image" style = {{width:imageWidth, height:imageHeight}}
         src = {require(`./images/text/project${props.value.projectnumber}/image${props.value.textnumber}.jpeg`)}
       />
       </button>
+
+      <button  className="square" onClick = {props.onClick}
+      style ={{
+
+        'margin-left': 0
+
+      }}>
+
+      <img style ={{width:600}}
+        src = {require(`./images/icons/project.jpeg`)}
+      />
+
+      </button>
+      </div>
+
+
+
     );
 }
 function SquareProject(props){
-    return (
-      <button className="square" onClick = {props.onClick}>
-      {props.value.projectnumber}
-      </button>
+
+        return (
+          <button  className="square" onClick = {props.onClick}>
+          <img style ={{width:200}}
+            src = {require(`./images/icons/project.jpeg`)}
+          />
+
+          </button>
+
+
     );
 }
 
@@ -48,35 +76,33 @@ class Board extends React.Component {
   }
 
   componentDidMount() {
-  this.updateWindowDimensions();
-  window.addEventListener('resize', this.updateWindowDimensions);
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
   }
-
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions);
   }
-
   updateWindowDimensions() {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
   handleClick(square){
-    const imageQuantity = 4;
+    const imageQuantity = 5;
     const textQuantity = 2;
-    const projectQuantity = 3;
+    const projectQuantity = 2;
 
     if(square == 'image'){
         // console.log('I am in the handleClick and I received' + square)
         this.setState({
         imagenumber:this.state.imagenumber+1
         })
-        if(this.state.imagenumber == imageQuantity){
+    if(this.state.imagenumber == imageQuantity){
           // console.log( "I am in the special loop")
           this.setState({
           imagenumber:1
           })
-        }
-      }else if(square == 'text'){
+        }}
+    else if(square == 'text'){
 
           // console.log('I am in the handleClick and I received' + square)
           this.setState({
@@ -95,7 +121,7 @@ class Board extends React.Component {
           textnumber:1,
           imagenumber:1
         })
-      if(this.state.projectnumber == projectQuantity ){
+    if(this.state.projectnumber == projectQuantity ){
           console.log( "I am in the special project loop")
           this.setState({
           projectnumber:0
@@ -132,24 +158,21 @@ class Board extends React.Component {
   render() {
     const status = '';
     return (
-      <div style = {{width:this.state.width, height:this.state.height}}>
-        <div className="status">{status}</div>
+        <div className="container"
+          style = {{
+          'flex-direction': 'row',
+          'justify-content': 'space-around',
+          'align-items': 'center',
+          'align-content':'center',
 
-        <div className="board-row">
+          }}>
           {this.renderSquare('image')}
           {this.renderSquare('text')}
 
         </div>
-
-
-      </div>
     );
   }
 }
-
-
-
-
 
 // ========================================
 ReactDOM.render(
