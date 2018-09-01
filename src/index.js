@@ -21,6 +21,7 @@ function SquareImage(props){
 function SquareText(props){
   const imageWidth = props.value.width/2-widthConstant;
   const imageHeight = props.value.width/2-heightConstant;
+  console.log(`this is the path --./images/text/project${props.value.projectnumber}/image${props.value.textnumber}.jpeg`)
     return (
       <div>
       <button  className="square" style = {{width:imageWidth, height:imageHeight}} onClick = {props.onClick} >
@@ -78,7 +79,7 @@ class Board extends React.Component {
   handleClick(square){
     const imageQuantity = 5;
     const textQuantity = 2;
-    const projectQuantity = 6;
+    const projectQuantity = 3;
 
     if(square == 'image'){
         // console.log('I am in the handleClick and I received' + square)
@@ -147,6 +148,7 @@ class Board extends React.Component {
   render() {
     const status = '';
     return (
+      <div>
         <div className="container"
           style = {{
           'flex-direction': 'row',
@@ -161,9 +163,18 @@ class Board extends React.Component {
           <div style ={{'position':'absolute','margin-top':250, 'margin-left':610,'background':'transparent'}} >
           {this.renderSquare('project')}
           </div>
-
-
         </div>
+          <div style = {{margin:20}}>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+          </div>
+        </div>
+
+
+
+
     );
   }
 }
