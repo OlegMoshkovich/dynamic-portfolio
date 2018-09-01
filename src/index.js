@@ -78,7 +78,7 @@ class Board extends React.Component {
   handleClick(square){
     const imageQuantity = 5;
     const textQuantity = 2;
-    const projectQuantity = 2;
+    const projectQuantity = 6;
 
     if(square == 'image'){
         // console.log('I am in the handleClick and I received' + square)
