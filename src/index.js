@@ -166,9 +166,7 @@ class Board extends React.Component {
         </div>
           <div style = {{margin:20}}>
               <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
+
           </div>
         </div>
 

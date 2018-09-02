@@ -8,9 +8,9 @@
 
 }
 .dot {
-  height: 15px;
-  width: 15px;
-  background-color: #bbb;
+  height: 10px;
+  width: 1px;
+  background-color: 'white';
   border-radius: 50%;
   display: inline-block;
 }
