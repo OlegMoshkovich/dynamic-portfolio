@@ -64,7 +64,7 @@ class Portfolio extends React.Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions);
   }
-  
+
   updateWindowDimensions() {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
@@ -159,10 +159,9 @@ class Portfolio extends React.Component {
         </div>
           <div style = {{margin:20}}>
               <span class="dot"></span>
-
+<div>somthing</div>
           </div>
         </div>
-
 
 
 
