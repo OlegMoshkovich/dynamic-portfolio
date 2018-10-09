@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+
 
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
@@ -64,30 +64,25 @@ class Portfolio extends React.Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions);
   }
-
   updateWindowDimensions() {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
   handleClick(square){
-    const imageQuantity = 5;
+    const imageQuantity = 3;
     const textQuantity = 3;
     const projectQuantity = 3;
 
     if(square == 'image'){
-        // console.log('I am in the handleClick and I received' + square)
         this.setState({
         imagenumber:this.state.imagenumber+1
         })
     if(this.state.imagenumber == imageQuantity){
-          // console.log( "I am in the special loop")
           this.setState({
           imagenumber:1
           })
         }}
     else if(square == 'text'){
-
-          // console.log('I am in the handleClick and I received' + square)
           this.setState({
           textnumber:this.state.textnumber+1
         })
@@ -121,7 +116,6 @@ class Portfolio extends React.Component {
       )};
 
       if(type == 'text'){
-        // console.log('I am in renderS' + type)
         return (
           <SquareText value = {this.state}
           onClick={() => this.handleClick('text')}
@@ -129,7 +123,6 @@ class Portfolio extends React.Component {
         )
       }
       if(type == 'project'){
-        // console.log('I am in renderS' + type)
         return (
           <SquareProject value = {this.state}
           onClick={() => this.handleClick('project')}
@@ -159,7 +152,6 @@ class Portfolio extends React.Component {
         </div>
           <div style = {{margin:20}}>
               <span class="dot"></span>
-<div>somthing</div>
           </div>
         </div>
 
