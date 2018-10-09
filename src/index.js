@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
+
+import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 const widthConstant = 50;
@@ -9,58 +10,49 @@ const heightConstant = 50;
 
 function SquareImage(props){
     const imageWidth = props.value.width/2-widthConstant;
-
     return (
       <button className="square" onClick = {props.onClick}  style = {{width:imageWidth, height:imageWidth}}>
-      <img className = "image" style = {{width:imageWidth, height:imageWidth}}
-        src = {require(`./images/image/project${props.value.projectnumber}/image${props.value.imagenumber}.jpeg`)}
-      />
+        <img className = "image" style = {{width:imageWidth, height:imageWidth}}
+          src = {require(`./images/image/project${props.value.projectnumber}/image${props.value.imagenumber}.png`)}
+        />
       </button>
     );
 }
+
 function SquareText(props){
   const imageWidth = props.value.width/2-widthConstant;
   const imageHeight = props.value.width/2-heightConstant;
-  console.log(`this is the path --./images/text/project${props.value.projectnumber}/image${props.value.textnumber}.jpeg`)
     return (
-      <div>
       <button  className="square" style = {{width:imageWidth, height:imageHeight}} onClick = {props.onClick} >
-      <img className = "image" style = {{width:imageWidth, height:imageHeight}}
-        src = {require(`./images/text/project${props.value.projectnumber}/image${props.value.textnumber}.jpeg`)}
-      />
+        <img className = "image" style = {{width:imageWidth, height:imageHeight}}
+          src = {require(`./images/text/project${props.value.projectnumber}/image${props.value.textnumber}.png`)}
+        />
       </button>
-
-
-      </div>
-
-
-
     );
 }
+
 function SquareProject(props){
-
-        return (
-          <button  className="square" onClick = {props.onClick}>
-          <img style ={{width:80}}
-            src = {require(`./images/icons/project.png`)}
-          />
-
-          </button>
-
-
+    let path = props.value.projectnumber == 0 ? './images/icons/project.png' : './images/icons/next.png';
+    return (
+      <button  className="square" onClick = {props.onClick}>
+        <img style ={{width:100}}
+          src = {require(`${path}`)}
+        />
+      </button>
     );
 }
 
-class Board extends React.Component {
+class Portfolio extends React.Component {
+
   constructor(props) {
     super(props);
+
     this.state = {
       textnumber:1,
       imagenumber:1,
       projectnumber:0,
       width: 0,
       height: 0
-
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
@@ -72,13 +64,14 @@ class Board extends React.Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions);
   }
+  
   updateWindowDimensions() {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
   handleClick(square){
     const imageQuantity = 5;
-    const textQuantity = 2;
+    const textQuantity = 3;
     const projectQuantity = 3;
 
     if(square == 'image'){
@@ -160,7 +153,7 @@ class Board extends React.Component {
           {this.renderSquare('image')}
           {this.renderSquare('text')}
 
-          <div style ={{'position':'absolute','margin-top':250, 'margin-left':610,'background':'transparent'}} >
+          <div style ={{'position':'absolute','margin-top':250, 'margin-left':580,'background':'transparent'}} >
           {this.renderSquare('project')}
           </div>
         </div>
@@ -179,7 +172,7 @@ class Board extends React.Component {
 
 // ========================================
 ReactDOM.render(
-  <Board />,
+  <Portfolio />,
   document.getElementById('root')
 );
 
