@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import countFiles from 'count-files';
+
 
 
 import './index.css';
@@ -10,6 +12,7 @@ const heightConstant = 50;
 
 function SquareImage(props){
     const imageWidth = props.value.width/2-widthConstant;
+
     return (
       <button className="square" onClick = {props.onClick}  style = {{width:imageWidth, height:imageWidth}}>
         <img className = "image" style = {{width:imageWidth, height:imageWidth}}
@@ -35,7 +38,7 @@ function SquareProject(props){
     let path = props.value.projectnumber == 0 ? './images/icons/project.png' : './images/icons/next.png';
     return (
       <button  className="square" onClick = {props.onClick}>
-        <img style ={{width:100}}
+        <img style ={{width:props.value.width/15}}
           src = {require(`${path}`)}
         />
       </button>
@@ -87,20 +90,17 @@ class Portfolio extends React.Component {
           textnumber:this.state.textnumber+1
         })
         if(this.state.textnumber == textQuantity ){
-          console.log( `I am in the special loop for the text ${this.state.textnumber}` )
           this.setState({
           textnumber:1
           })
         }
       }else{
-        console.log('I am in the handleClick and I received' + square )
           this.setState({
           projectnumber:this.state.projectnumber+1,
           textnumber:1,
           imagenumber:1
         })
     if(this.state.projectnumber == projectQuantity ){
-          console.log( "I am in the special project loop")
           this.setState({
           projectnumber:0
         })
@@ -123,15 +123,21 @@ class Portfolio extends React.Component {
         )
       }
       if(type == 'project'){
+        console.log('width-',this.state.width)
+        console.log('height-',this.state.height)
         return (
-          <SquareProject value = {this.state}
-          onClick={() => this.handleClick('project')}
-        />
+          <div style ={{'position':'absolute','margin-top':this.state.width/6, 'margin-left':this.state.width/2.5,'background':'transparent'}} >
+            <SquareProject value = {this.state}
+            onClick={() => this.handleClick('project')}
+            />
+          </div>
         )
       }
   }
 
   render() {
+
+
     const status = '';
     return (
       <div>
@@ -141,14 +147,11 @@ class Portfolio extends React.Component {
           'justify-content': 'space-around',
           'align-items': 'center',
           'align-content':'center',
-
           }}>
           {this.renderSquare('image')}
           {this.renderSquare('text')}
-
-          <div style ={{'position':'absolute','margin-top':250, 'margin-left':580,'background':'transparent'}} >
           {this.renderSquare('project')}
-          </div>
+
         </div>
           <div style = {{margin:20}}>
               <span class="dot"></span>
