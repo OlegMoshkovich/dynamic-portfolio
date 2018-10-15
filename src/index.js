@@ -7,12 +7,11 @@ import countFiles from 'count-files';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
-const widthConstant = 50;
-const heightConstant = 50;
+const widthConstant =60;
+const heightConstant = 60;
 
 function SquareImage(props){
     const imageWidth = props.value.width/2-widthConstant;
-
     return (
       <button className="square" onClick = {props.onClick}  style = {{width:imageWidth, height:imageWidth}}>
         <img className = "image" style = {{width:imageWidth, height:imageWidth}}
@@ -35,10 +34,10 @@ function SquareText(props){
 }
 
 function SquareProject(props){
-    let path = props.value.projectnumber == 0 ? './images/icons/project.png' : './images/icons/next.png';
+    let path = props.value.projectnumber === 0 ? './images/icons/project.png' : './images/icons/next.png';
     return (
       <button  className="square" onClick = {props.onClick}>
-        <img style ={{width:props.value.width/15}}
+        <img style ={{width:props.value.width/20}}
           src = {require(`${path}`)}
         />
       </button>
@@ -46,17 +45,18 @@ function SquareProject(props){
 }
 
 class Portfolio extends React.Component {
-
   constructor(props) {
     super(props);
-
     this.state = {
       textnumber:1,
       imagenumber:1,
       projectnumber:0,
       width: 0,
-      height: 0
+      height: 0,
+      imageQuantity:5,
+      textQuantity:3
     };
+
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
@@ -71,62 +71,69 @@ class Portfolio extends React.Component {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
-  handleClick(square){
-    const imageQuantity = 3;
-    const textQuantity = 3;
-    const projectQuantity = 3;
 
-    if(square == 'image'){
+  handleClick(square){
+    let imageQuantity = [5,1,3,3,1,6,1,1,1];
+    let textQuantity = [3,1,3,3,1,1,1,1,1];
+    let projectQuantity = 7;
+
+    if(square === 'image'){
         this.setState({
         imagenumber:this.state.imagenumber+1
         })
-    if(this.state.imagenumber == imageQuantity){
-          this.setState({
-          imagenumber:1
-          })
-        }}
-    else if(square == 'text'){
+
+        if(this.state.imagenumber === this.state.imageQuantity){
+              this.setState({
+              imagenumber:1
+              })
+            }}
+
+    else if(square === 'text'){
           this.setState({
           textnumber:this.state.textnumber+1
         })
-        if(this.state.textnumber == textQuantity ){
-          this.setState({
-          textnumber:1
-          })
-        }
-      }else{
+
+        if(this.state.textnumber === this.state.textQuantity ){
+              this.setState({
+              textnumber:1
+              })
+            }
+      }else{ // if the project number chanmges reset the counters to 1 and 1
           this.setState({
           projectnumber:this.state.projectnumber+1,
           textnumber:1,
-          imagenumber:1
+          imagenumber:1,
+          imageQuantity:imageQuantity[this.state.projectnumber+1],
+          textQuantity:textQuantity[this.state.projectnumber+1]
         })
-    if(this.state.projectnumber == projectQuantity ){
+
+    if(this.state.projectnumber === projectQuantity ){ // if the project number is reached reset the project number
           this.setState({
           projectnumber:0
         })
       }
   }}
+
+
   renderSquare(type) {
-      if(type == 'image'){
-        // console.log('I am in renderS' + type)
+      if(type === 'image'){
+
         return (
           <SquareImage value = {this.state}
           onClick={() => this.handleClick('image')}
         />
       )};
 
-      if(type == 'text'){
+      if(type === 'text'){
         return (
           <SquareText value = {this.state}
           onClick={() => this.handleClick('text')}
         />
         )
       }
-      if(type == 'project'){
-        console.log('width-',this.state.width)
-        console.log('height-',this.state.height)
+      if(type === 'project'){
         return (
-          <div style ={{'position':'absolute','margin-top':this.state.width/6, 'margin-left':this.state.width/2.5,'background':'transparent'}} >
+          <div style ={{'position':'absolute','margin-top':this.state.width/5.4, 'margin-left':this.state.width/2.4,'background':'transparent'}} >
             <SquareProject value = {this.state}
             onClick={() => this.handleClick('project')}
             />
@@ -164,7 +171,7 @@ class Portfolio extends React.Component {
   }
 }
 
-// ========================================
+// ============================================================
 ReactDOM.render(
   <Portfolio />,
   document.getElementById('root')
