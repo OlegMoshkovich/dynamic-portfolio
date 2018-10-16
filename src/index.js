@@ -7,7 +7,7 @@ import countFiles from 'count-files';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
-const widthConstant =60;
+const widthConstant = 60;
 const heightConstant = 60;
 
 function SquareImage(props){
@@ -37,7 +37,7 @@ function SquareProject(props){
     let path = props.value.projectnumber === 0 ? './images/icons/project.png' : './images/icons/next.png';
     return (
       <button  className="square" onClick = {props.onClick}>
-        <img style ={{width:props.value.width/20}}
+        <img style ={{width:props.value.width/15}}
           src = {require(`${path}`)}
         />
       </button>
@@ -53,7 +53,7 @@ class Portfolio extends React.Component {
       projectnumber:0,
       width: 0,
       height: 0,
-      imageQuantity:5,
+      imageQuantity:3,
       textQuantity:3
     };
 
@@ -73,9 +73,9 @@ class Portfolio extends React.Component {
 
 
   handleClick(square){
-    let imageQuantity = [5,1,3,3,1,6,1,1,1];
-    let textQuantity = [3,1,3,3,1,1,1,1,1];
-    let projectQuantity = 7;
+    let imageQuantity = [3,1,2,1,1,1,1,1,1];
+    let textQuantity = [3,1,1,1,1,1,1,1,1];
+    let projectQuantity = 6;
 
     if(square === 'image'){
         this.setState({
@@ -99,6 +99,7 @@ class Portfolio extends React.Component {
               })
             }
       }else{ // if the project number chanmges reset the counters to 1 and 1
+
           this.setState({
           projectnumber:this.state.projectnumber+1,
           textnumber:1,
@@ -109,7 +110,10 @@ class Portfolio extends React.Component {
 
     if(this.state.projectnumber === projectQuantity ){ // if the project number is reached reset the project number
           this.setState({
-          projectnumber:0
+          projectnumber:0,
+          imageQuantity:3,
+          textQuantity:3
+
         })
       }
   }}
