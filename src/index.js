@@ -7,14 +7,15 @@ const widthConstant = 60;
 const heightConstant = 60;
 
 function Circle(props){
+    let width = props.width/130
     let circleItems = [];
       for (var i = 1; i < props.quantity+1; i++) {
         if(i === props.number){
-          circleItems.push(<img className = "image" style = {{width:10, height:10,margin:2}}
+          circleItems.push(<img className = "image" style = {{width:width, height:width,margin:2}}
             src = {require(`./images/icons/circle_filled.png`)}
               />);
         }else{
-          circleItems.push(<img className = "image" style = {{width:10, height:10,margin:2}}
+          circleItems.push(<img className = "image" style = {{width:width, height:width,margin:2}}
             src = {require(`./images/icons/circle.png`)}
           />);
         }
@@ -33,7 +34,7 @@ function SquareImage(props){
             src = {require(`./images/image/project${props.value.projectnumber}/image${props.value.imagenumber}.png`)}
           />
         </button>
-        <Circle quantity = {props.value.imageQuantity} number = {props.value.imagenumber}/>
+        <Circle quantity = {props.value.imageQuantity} number = {props.value.imagenumber} width= {props.value.width}/>
       </div>
     );
 }
@@ -48,7 +49,7 @@ function SquareText(props){
             src = {require(`./images/text/project${props.value.projectnumber}/image${props.value.textnumber}.png`)}
           />
         </button>
-        <Circle quantity = {props.value.textQuantity} number = {props.value.textnumber}/>
+        <Circle quantity = {props.value.textQuantity} number = {props.value.textnumber} width= {props.value.width}/>
       </div>
     );
 }
