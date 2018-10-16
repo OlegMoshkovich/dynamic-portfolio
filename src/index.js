@@ -1,23 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import countFiles from 'count-files';
-
-
-
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 const widthConstant = 60;
 const heightConstant = 60;
 
+function Circle(props){
+    let circleItems = [];
+      for (var i = 1; i < props.quantity+1; i++) {
+        if(i === props.number){
+          circleItems.push(<img className = "image" style = {{width:10, height:10,margin:2}}
+            src = {require(`./images/icons/circle_filled.png`)}
+              />);
+        }else{
+          circleItems.push(<img className = "image" style = {{width:10, height:10,margin:2}}
+            src = {require(`./images/icons/circle.png`)}
+          />);
+        }
+      }
+      return (
+        <div style = {{marginTop:5}}>{circleItems}</div>
+      );
+}
+
 function SquareImage(props){
     const imageWidth = props.value.width/2-widthConstant;
     return (
-      <button className="square" onClick = {props.onClick}  style = {{width:imageWidth, height:imageWidth}}>
-        <img className = "image" style = {{width:imageWidth, height:imageWidth}}
-          src = {require(`./images/image/project${props.value.projectnumber}/image${props.value.imagenumber}.png`)}
-        />
-      </button>
+      <div>
+        <button className="square" onClick = {props.onClick}  style = {{width:imageWidth, height:imageWidth}}>
+          <img className = "image" style = {{width:imageWidth, height:imageWidth}}
+            src = {require(`./images/image/project${props.value.projectnumber}/image${props.value.imagenumber}.png`)}
+          />
+        </button>
+        <Circle quantity = {props.value.imageQuantity} number = {props.value.imagenumber}/>
+      </div>
     );
 }
 
@@ -25,11 +42,14 @@ function SquareText(props){
   const imageWidth = props.value.width/2-widthConstant;
   const imageHeight = props.value.width/2-heightConstant;
     return (
-      <button  className="square" style = {{width:imageWidth, height:imageHeight}} onClick = {props.onClick} >
-        <img className = "image" style = {{width:imageWidth, height:imageHeight}}
-          src = {require(`./images/text/project${props.value.projectnumber}/image${props.value.textnumber}.png`)}
-        />
-      </button>
+      <div>
+        <button  className="square" style = {{width:imageWidth, height:imageHeight}} onClick = {props.onClick} >
+          <img className = "image" style = {{width:imageWidth, height:imageHeight}}
+            src = {require(`./images/text/project${props.value.projectnumber}/image${props.value.textnumber}.png`)}
+          />
+        </button>
+        <Circle quantity = {props.value.textQuantity} number = {props.value.textnumber}/>
+      </div>
     );
 }
 
@@ -73,7 +93,7 @@ class Portfolio extends React.Component {
 
 
   handleClick(square){
-    let imageQuantity = [3,5,8,3,8,6,1];
+    let imageQuantity = [3,5,8,5,8,6,1];
     let textQuantity = [3,1,1,1,1,1,1];
     let projectQuantity = 6;
 
@@ -137,7 +157,7 @@ class Portfolio extends React.Component {
       }
       if(type === 'project'){
         return (
-          <div style ={{'position':'absolute','margin-top':this.state.width/5.4, 'margin-left':this.state.width/2.4,'background':'transparent'}} >
+          <div style ={{'position':'absolute','margin-top':this.state.width/6, 'margin-left':this.state.width/2.4,'background':'transparent'}} >
             <SquareProject value = {this.state}
             onClick={() => this.handleClick('project')}
             />
@@ -163,10 +183,10 @@ class Portfolio extends React.Component {
           {this.renderSquare('text')}
           {this.renderSquare('project')}
 
+
         </div>
-          <div style = {{margin:20}}>
-              <span class="dot"></span>
-          </div>
+
+
         </div>
 
 
