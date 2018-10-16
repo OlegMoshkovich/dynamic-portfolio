@@ -20,7 +20,7 @@ function Circle(props){
         }
       }
       return (
-        <div style = {{marginTop:5}}>{circleItems}</div>
+        <div style = {{marginTop:5, marginLeft:0}}>{circleItems}</div>
       );
 }
 
@@ -93,7 +93,7 @@ class Portfolio extends React.Component {
 
 
   handleClick(square){
-    let imageQuantity = [3,5,8,5,8,6,1];
+    let imageQuantity = [3,5,8,3,8,6,1];
     let textQuantity = [3,1,1,1,1,1,1];
     let projectQuantity = 6;
 
