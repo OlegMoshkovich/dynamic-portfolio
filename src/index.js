@@ -94,9 +94,9 @@ class Portfolio extends React.Component {
 
 
   handleClick(square){
-    let imageQuantity = [3,5,8,3,8,6,1];
-    let textQuantity = [3,1,1,1,1,1,1];
-    let projectQuantity = 6;
+    let imageQuantity = [3,6,5,8,6,3,1,4];
+    let textQuantity = [3,1,1,1,1,1,1,1];
+    let projectQuantity = 7;
 
     if(square === 'image'){
         this.setState({
