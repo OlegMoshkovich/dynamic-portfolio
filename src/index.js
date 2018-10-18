@@ -65,6 +65,17 @@ function SquareProject(props){
     );
 }
 
+function SquareProjectPrev(props){
+    let path = props.value.projectnumber === 0 ? './images/icons/Prev.png' : './images/icons/Prev.png';
+    return (
+      <button  className="square" onClick = {props.onClick}>
+        <img style ={{width:props.value.width/15}}
+          src = {require(`${path}`)}
+        />
+      </button>
+    );
+}
+
 class Portfolio extends React.Component {
   constructor(props) {
     super(props);
@@ -75,7 +86,7 @@ class Portfolio extends React.Component {
       width: 0,
       height: 0,
       imageQuantity:3,
-      textQuantity:3
+      textQuantity:5
     };
 
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
@@ -95,7 +106,7 @@ class Portfolio extends React.Component {
 
   handleClick(square){
     let imageQuantity = [3,6,5,8,6,3,1,4];
-    let textQuantity = [3,1,1,1,1,1,1,1];
+    let textQuantity = [5,1,4,6,5,3,1,5];
     let projectQuantity = 7;
 
     if(square === 'image'){
@@ -133,7 +144,7 @@ class Portfolio extends React.Component {
           this.setState({
           projectnumber:0,
           imageQuantity:3,
-          textQuantity:3
+          textQuantity:5
 
         })
       }
@@ -165,6 +176,16 @@ class Portfolio extends React.Component {
           </div>
         )
       }
+      if(type === 'projectPrev'){
+        return (
+          <div style ={{'position':'absolute','margin-top':this.state.width/6, 'margin-left':this.state.width/5,'background':'transparent'}} >
+            <SquareProject value = {this.state}
+            onClick={() => this.handleClick('project')}
+            />
+          </div>
+        )
+      }
+
   }
 
   render() {
