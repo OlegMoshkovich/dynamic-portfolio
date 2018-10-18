@@ -86,7 +86,7 @@ class Portfolio extends React.Component {
       width: 0,
       height: 0,
       imageQuantity:3,
-      textQuantity:5
+      textQuantity:6
     };
 
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
@@ -105,8 +105,8 @@ class Portfolio extends React.Component {
 
 
   handleClick(square){
-    let imageQuantity = [3,6,5,8,6,3,1,4];
-    let textQuantity = [5,1,4,6,5,3,1,5];
+    let imageQuantity = [3,6,5,8,6,3,1,6];
+    let textQuantity = [5,2,4,6,5,3,1,5];
     let projectQuantity = 7;
 
     if(square === 'image'){
