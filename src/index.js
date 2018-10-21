@@ -31,7 +31,7 @@ function SquareImage(props){
       <div>
         <button className="square" onClick = {props.onClick}  style = {{width:imageWidth, height:imageWidth}}>
           <img className = "image" style = {{width:imageWidth, height:imageWidth}}
-            src = {require(`./images/image/project${props.value.projectnumber}/image${props.value.imagenumber}.png`)}
+            src = {require(`./images/short/image/project${props.value.projectnumber}/image${props.value.imagenumber}.png`)}
           />
         </button>
         <Circle quantity = {props.value.imageQuantity} number = {props.value.imagenumber} width= {props.value.width}/>
@@ -46,7 +46,7 @@ function SquareText(props){
       <div>
         <button  className="square" style = {{width:imageWidth, height:imageHeight}} onClick = {props.onClick} >
           <img className = "image" style = {{width:imageWidth, height:imageHeight}}
-            src = {require(`./images/text/project${props.value.projectnumber}/image${props.value.textnumber}.png`)}
+            src = {require(`./images/short/text/project${props.value.projectnumber}/image${props.value.textnumber}.png`)}
           />
         </button>
         <Circle quantity = {props.value.textQuantity} number = {props.value.textnumber} width= {props.value.width}/>
@@ -85,8 +85,10 @@ class Portfolio extends React.Component {
       projectnumber:0,
       width: 0,
       height: 0,
-      imageQuantity:3,
-      textQuantity:6
+      imageQuantity:2,
+      textQuantity:2
+      // imageQuantity:3,
+      // textQuantity:6
     };
 
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
@@ -105,9 +107,12 @@ class Portfolio extends React.Component {
 
 
   handleClick(square){
-    let imageQuantity = [3,6,5,8,3,6,1,6];
-    let textQuantity = [5,2,4,6,5,3,2,2];
-    let projectQuantity = 7;
+    // let imageQuantity = [3,6,5,8,3,6,1,6];
+    // let textQuantity = [5,2,4,6,5,3,2,2];
+    let imageQuantity = [2,5,4,3,4,1];
+    let textQuantity = [2,1,1,1,1,1];
+
+    let projectQuantity = 5;
 
     if(square === 'image'){
         this.setState({
