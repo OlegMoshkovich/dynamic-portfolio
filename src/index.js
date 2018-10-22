@@ -7,11 +7,12 @@ const widthConstant = 60;
 const heightConstant = 60;
 
 function Circle(props){
-    let width = props.width/130
+    let width = props.width/110
+    let widthSelected = props.width/110
     let circleItems = [];
       for (var i = 1; i < props.quantity+1; i++) {
         if(i === props.number){
-          circleItems.push(<img className = "image" style = {{width:width, height:width,margin:2}}
+          circleItems.push(<img className = "image" style = {{width:widthSelected, height:widthSelected,margin:2}}
             src = {require(`./images/icons/circle_filled.png`)}
               />);
         }else{
@@ -109,7 +110,7 @@ class Portfolio extends React.Component {
   handleClick(square){
     // let imageQuantity = [3,6,5,8,3,6,1,6];
     // let textQuantity = [5,2,4,6,5,3,2,2];
-    let imageQuantity = [2,5,4,3,4,1];
+    let imageQuantity = [2,4,5,5,1,4];
     let textQuantity = [2,1,1,1,1,1];
 
     let projectQuantity = 5;
