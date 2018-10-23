@@ -55,6 +55,35 @@ function SquareText(props){
     );
 }
 
+
+function SquareImageIphone(props){
+  const imageWidth = props.value.width/1.8;
+    return (
+      <div>
+        <button className="square" onClick = {props.onClick}  style = {{width:imageWidth, height:imageWidth}}>
+          <img className = "image" style = {{width:imageWidth, height:imageWidth}}
+            src = {require(`./images/short/image/project${props.value.projectnumber}/image${props.value.imagenumber}.png`)}
+          />
+        </button>
+        <Circle quantity = {props.value.imageQuantity} number = {props.value.imagenumber} width= {props.value.width}/>
+      </div>
+    );
+}
+
+function SquareTextIphone(props){
+  const imageWidth = props.value.width/1.8;
+  const imageHeight = props.value.width/1.8;
+    return (
+      <div>
+        <button  className="square" style = {{width:imageWidth, height:imageHeight,'padding-top':10}} onClick = {props.onClick} >
+          <img className = "image" style = {{width:imageWidth, height:imageHeight}}
+            src = {require(`./images/short/text/project${props.value.projectnumber}/image${props.value.textnumber}.png`)}
+          />
+        </button>
+        <Circle quantity = {props.value.textQuantity} number = {props.value.textnumber} width= {props.value.width}/>
+      </div>
+    );
+}
 function SquareProject(props){
     let path = props.value.projectnumber === 0 ? './images/icons/project.png' : './images/icons/next.png';
     return (
@@ -66,16 +95,18 @@ function SquareProject(props){
     );
 }
 
-function SquareProjectPrev(props){
-    let path = props.value.projectnumber === 0 ? './images/icons/Prev.png' : './images/icons/Prev.png';
+function SquareProjectIphone(props){
+    let path = props.value.projectnumber === 0 ? './images/icons/project.png' : './images/icons/next.png';
     return (
       <button  className="square" onClick = {props.onClick}>
-        <img style ={{width:props.value.width/15}}
+        <img style ={{width:props.value.width/5}}
           src = {require(`${path}`)}
         />
       </button>
     );
 }
+
+
 
 class Portfolio extends React.Component {
   constructor(props) {
@@ -182,10 +213,28 @@ class Portfolio extends React.Component {
           </div>
         )
       }
-      if(type === 'projectPrev'){
+
+      if(type === 'imageIphone'){
+
         return (
-          <div style ={{'position':'absolute','margin-top':this.state.width/6, 'margin-left':this.state.width/5,'background':'transparent'}} >
-            <SquareProject value = {this.state}
+          <SquareImageIphone value = {this.state}
+          onClick={() => this.handleClick('image')}
+        />
+      )};
+
+      if(type === 'textIphone'){
+        return (
+          <SquareTextIphone value = {this.state}
+          onClick={() => this.handleClick('text')}
+        />
+        )
+      }
+
+
+      if(type === 'projectIphone'){
+        return (
+          <div style ={{'background':'transparent','padding-top':40}} >
+            <SquareProjectIphone value = {this.state}
             onClick={() => this.handleClick('project')}
             />
           </div>
@@ -197,25 +246,49 @@ class Portfolio extends React.Component {
   render() {
 
 
-    const status = '';
+    const sayHello = () => {
+         console.log("I am printing width:"+this.state.width)
+         console.log("I am printing height:"+this.state.height)
+         console.log("I am printing aspect ratio:"+this.state.height/this.state.width)
+        let aspectRatio = this.state.height/this.state.width
+         if(aspectRatio>1.4){
+           return (
+           <div className="containerIphone"
+             style = {{
+             'flex-direction': 'column',
+             'align-items': 'center',
+             'align-content':'center',
+             }}>
+             {this.renderSquare('imageIphone')}
+             {this.renderSquare('textIphone')}
+
+             {this.renderSquare('projectIphone')}
+           </div>
+         )
+         }else{
+           return (
+           <div className="container"
+             style = {{
+             'flex-direction': 'row',
+             'justify-content': 'space-around',
+             'align-items': 'center',
+             'align-content':'center',
+             }}>
+             {this.renderSquare('image')}
+             {this.renderSquare('text')}
+             {this.renderSquare('project')}
+           </div>)
+
+         }
+     }
+    const sayBye = () => {
+         return 'Hello';
+     }
     return (
+
       <div>
-        <div className="container"
-          style = {{
-          'flex-direction': 'row',
-          'justify-content': 'space-around',
-          'align-items': 'center',
-          'align-content':'center',
-          }}>
-          {this.renderSquare('image')}
-          {this.renderSquare('text')}
-          {this.renderSquare('project')}
-
-
-        </div>
-
-
-        </div>
+        {sayHello()}
+      </div>
 
 
 

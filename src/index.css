@@ -8,6 +8,19 @@
   margin-top: 20px;
 
 }
+
+.containerIphone{
+  padding-top: 30px;
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+
+  'align-items': 'center',
+  'align-content':'center'
+
+}
+
+
 .dot {
   height: 10px;
   width: 1px;
