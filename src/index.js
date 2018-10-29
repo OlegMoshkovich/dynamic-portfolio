@@ -117,8 +117,8 @@ class Portfolio extends React.Component {
       projectnumber:0,
       width: 0,
       height: 0,
-      imageQuantity:2,
-      textQuantity:2
+      imageQuantity:1,
+      textQuantity:1
       // imageQuantity:3,
       // textQuantity:6
     };
