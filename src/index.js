@@ -141,10 +141,12 @@ class Portfolio extends React.Component {
   handleClick(square){
     // let imageQuantity = [3,6,5,8,3,6,1,6];
     // let textQuantity = [5,2,4,6,5,3,2,2];
-    let imageQuantity = [2,4,5,5,1,4];
+    let imageQuantity = [2,4,5,5,4];
     let textQuantity = [2,1,1,1,1,1];
+    // let imageQuantity = [1,1,1,1,1];
+    // let textQuantity =  [1,1,1,1,1];
 
-    let projectQuantity = 5;
+    let projectQuantity = 4;
 
     if(square === 'image'){
         this.setState({
@@ -180,8 +182,8 @@ class Portfolio extends React.Component {
     if(this.state.projectnumber === projectQuantity ){ // if the project number is reached reset the project number
           this.setState({
           projectnumber:0,
-          imageQuantity:3,
-          textQuantity:5
+          imageQuantity:1,
+          textQuantity:1
 
         })
       }
