@@ -7,49 +7,6 @@ import Square from './Components/Square'
 import Circle from './Components/Circle'
 import NavButton from './Components/NavButton'
 
-
-
-
-function SquareImageIphone(props){
-  const imageWidth = props.value.width/1.2;
-
-
-    return (
-      <div>
-        <button className="square" onClick = {props.onClick}  style = {{width:imageWidth, height:imageWidth}}>
-          <img className = "image" style = {{width:imageWidth, height:imageWidth}}
-            src = {require(`./images/short/image/project${props.value.projectnumber}/image${props.value.imagenumber}.png`)}
-          />
-        </button>
-        <Circle quantity = {props.value.imageQuantity} number = {props.value.imagenumber} width= {props.value.width}/>
-      </div>
-    );
-}
-function SquareTextIphone(props){
-  const imageWidth = props.value.width/3;
-
-    return (
-      <div>
-        <button  className="square" style = {{width:imageWidth, height:imageWidth,'paddingTop':10}} onClick = {props.onClick} >
-          <img className = "image" style = {{width:imageWidth, height:imageWidth}}
-            src = {require(`./images/short/text/project${props.value.projectnumber}/image${props.value.textnumber}.png`)}
-          />
-        </button>
-        <Circle quantity = {props.value.textQuantity} number = {props.value.textnumber} width= {props.value.width}/>
-      </div>
-    );
-}
-function SquareProjectIphone(props){
-    let path = props.value.projectnumber === 0 ? './images/icons/project.png' : './images/icons/next.png';
-    return (
-      <button  className="square" onClick = {props.onClick}>
-        <img style ={{width:props.value.width/5}}
-          src = {require(`${path}`)}
-        />
-      </button>
-    );
-}
-
 class Portfolio extends React.Component {
   constructor(props) {
     super(props);
@@ -59,12 +16,9 @@ class Portfolio extends React.Component {
       projectnumber:0,
       width: 0,
       height: 0,
-      imageQuantity:1,
+      imageQuantity:11,
       textQuantity:3
-      // imageQuantity:3,
-      // textQuantity:6
     };
-
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
@@ -84,6 +38,7 @@ class Portfolio extends React.Component {
     let imageQuantity = [2,4,5,4,4];
     let textQuantity = [2,1,1,1,1,1];
     let projectQuantity = 3;
+
     if(square === 'image'){
         this.setState({
         imagenumber:this.state.imagenumber+1
@@ -117,42 +72,11 @@ class Portfolio extends React.Component {
     if(this.state.projectnumber === projectQuantity ){ // if the project number is reached reset the project number
           this.setState({
           projectnumber:0,
-          imageQuantity:1,
+          imageQuantity:11,
           textQuantity:3
-
         })
       }
   }}
-
-
-  renderSquare(type) {
-
-      if(type === 'imageIphone'){
-        return (
-          <SquareImageIphone value = {this.state}
-          onClick={() => this.handleClick('image')}
-        />
-      )};
-
-      if(type === 'textIphone'){
-        return (
-          <SquareTextIphone value = {this.state}
-          onClick={() => this.handleClick('text')}
-        />
-        )
-      }
-
-      if(type === 'projectIphone'){
-        return (
-          <div style ={{'background':'transparent','paddingTop':40}} >
-            <SquareProjectIphone value = {this.state}
-            onClick={() => this.handleClick('project')}
-            />
-          </div>
-        )
-      }
-
-  }
 
   render() {
          const widthConstant = 60;
@@ -161,34 +85,29 @@ class Portfolio extends React.Component {
          let config;
 
          if(aspectRatio>1.4){
-           squareWidth = this.state.width/1.1-widthConstant
+           squareWidth = this.state.width/1-widthConstant
            config = 'column'
          }else {
            squareWidth = this.state.width/2-widthConstant
            config = 'row'
          }
 
+       return (
+       <div className="container"
+         style = {{
+         'flex-direction': config,
+         'justify-content': 'space-around',
+         'align-items': 'center',
+         'align-content':'center',
+         }}>
+         <Square value = {this.state} type = {'image'} width = {squareWidth}
+         onClick={() => this.handleClick('image')}/>
 
-           return (
-           <div className="container"
-             style = {{
-             'flex-direction': config,
-             'justify-content': 'space-around',
-             'align-items': 'center',
-             'align-content':'center',
-             }}>
-             <Square value = {this.state} type = {'image'} width = {squareWidth}
-             onClick={() => this.handleClick('image')}/>
-             <Square value = {this.state} type = {'text'} width = {squareWidth}
-             onClick={() => this.handleClick('text')}/>
-             <NavButton value = {this.state} config = {config}
-             onClick={() => this.handleClick('project')}/>
-           </div>)
-
-
-
-
-
+         <Square value = {this.state} type = {'text'} width = {squareWidth}
+         onClick={() => this.handleClick('text')}/>
+         <NavButton value = {this.state} config = {config}
+         onClick={() => this.handleClick('project')}/>
+       </div>)
   }
 }
 

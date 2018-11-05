@@ -3,8 +3,8 @@ import '../index.css';
 
 
 function Circle(props){
-    let width = props.width/110
-    let widthSelected = props.width/110
+    let width = props.width/90
+    let widthSelected = props.width/90
     let circleItems = [];
       for (var i = 1; i < props.quantity+1; i++) {
         if(i === props.number){
