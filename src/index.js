@@ -4,7 +4,6 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 import Square from './Components/Square'
-import Circle from './Components/Circle'
 import NavButton from './Components/NavButton'
 
 class Portfolio extends React.Component {
@@ -95,10 +94,10 @@ class Portfolio extends React.Component {
        return (
        <div className="container"
          style = {{
-         'flex-direction': config,
-         'justify-content': 'space-around',
-         'align-items': 'center',
-         'align-content':'center',
+         'flexDirection': config,
+         'justifyContent': 'space-around',
+         'alignItems': 'center',
+         'alignContent':'center',
          }}>
          <Square value = {this.state} type = {'image'} width = {squareWidth}
          onClick={() => this.handleClick('image')}/>

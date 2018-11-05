@@ -1,11 +1,11 @@
 
 
 .container{
-  padding-top: 30px;
+  paddingTop: 30px;
   display:flex;
 
   justify-content: flex-left;
-  margin-top: 20px;
+  marginTop: 20px;
 
 }
 
