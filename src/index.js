@@ -157,32 +157,22 @@ class Portfolio extends React.Component {
   render() {
          const widthConstant = 60;
          let aspectRatio = this.state.height/this.state.width
-         let squareWidth = this.state.width/2-widthConstant
-         let widthDivider = 2
-         if(aspectRatio>1.4){
-           let squareWidth = this.state.width/5-widthConstant}
-
-
+         let squareWidth;
+         let config;
 
          if(aspectRatio>1.4){
+           squareWidth = this.state.width/1.1-widthConstant
+           config = 'column'
+         }else {
+           squareWidth = this.state.width/2-widthConstant
+           config = 'row'
+         }
 
-           return (
-           <div className="containerIphone"
-             style = {{
-             'flex-direction': 'column',
-             'align-items': 'center',
-             'align-content':'center',
-             }}>
-             {this.renderSquare('imageIphone')}
-             {this.renderSquare('textIphone')}
-             {this.renderSquare('projectIphone')}
-           </div>
-         )
-         }else{
+
            return (
            <div className="container"
              style = {{
-             'flex-direction': 'row',
+             'flex-direction': config,
              'justify-content': 'space-around',
              'align-items': 'center',
              'align-content':'center',
@@ -191,11 +181,11 @@ class Portfolio extends React.Component {
              onClick={() => this.handleClick('image')}/>
              <Square value = {this.state} type = {'text'} width = {squareWidth}
              onClick={() => this.handleClick('text')}/>
-             <NavButton value = {this.state}
+             <NavButton value = {this.state} config = {config}
              onClick={() => this.handleClick('project')}/>
            </div>)
 
-         }
+
 
 
 

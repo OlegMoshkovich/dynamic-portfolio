@@ -6,7 +6,6 @@ const widthConstant = 60;
 
 
 function Square(props){
-  console.log('widthDivider', props.widthDivider)
     const imageWidth = props.width;
 
     if(props.type === 'image'){
