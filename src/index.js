@@ -118,7 +118,7 @@ class Portfolio extends React.Component {
       width: 0,
       height: 0,
       imageQuantity:1,
-      textQuantity:1
+      textQuantity:3
       // imageQuantity:3,
       // textQuantity:6
     };
@@ -183,7 +183,7 @@ class Portfolio extends React.Component {
           this.setState({
           projectnumber:0,
           imageQuantity:1,
-          textQuantity:1
+          textQuantity:3
 
         })
       }
