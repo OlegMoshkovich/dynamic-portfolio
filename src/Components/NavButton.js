@@ -19,9 +19,9 @@ function NavButton(props){
     );
   }else{
     return (
-      <div style ={{'background':'transparent','paddingTop':40}} >
+      <div style ={{'background':'transparent','paddingTop':100}} >
       <button  className="square" onClick = {props.onClick}>
-        <img style ={{width:props.value.width/9}}
+        <img style ={{width:props.value.width/5}}
           // src = {require(`${path}`)
           src = {props.value.projectnumber === 0 ? require(`../images/icons/project.png`) : require(`../images/icons/next.png`)}/>
       </button>
