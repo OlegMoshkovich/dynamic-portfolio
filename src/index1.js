@@ -3,17 +3,31 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
-import Square from './Components/Square'
-import Circle from './Components/Circle'
-import NavButton from './Components/NavButton'
+const widthConstant = 60;
+const heightConstant = 60;
 
+function Circle(props){
+    let width = props.width/110
+    let widthSelected = props.width/110
+    let circleItems = [];
+      for (var i = 1; i < props.quantity+1; i++) {
+        if(i === props.number){
+          circleItems.push(<img className = "image" style = {{width:widthSelected, height:widthSelected,margin:2}}
+            src = {require(`./images/icons/circle_filled.png`)}
+              />);
+        }else{
+          circleItems.push(<img className = "image" style = {{width:width, height:width,margin:2}}
+            src = {require(`./images/icons/circle.png`)}
+          />);
+        }
+      }
+      return (
+        <div style = {{marginTop:5, marginLeft:0}}>{circleItems}</div>
+      );
+}
 
-
-
-function SquareImageIphone(props){
-  const imageWidth = props.value.width/1.2;
-
-
+function SquareImage(props){
+    const imageWidth = props.value.width/2-widthConstant;
     return (
       <div>
         <button className="square" onClick = {props.onClick}  style = {{width:imageWidth, height:imageWidth}}>
@@ -25,13 +39,14 @@ function SquareImageIphone(props){
       </div>
     );
 }
-function SquareTextIphone(props){
-  const imageWidth = props.value.width/3;
 
+function SquareText(props){
+  const imageWidth = props.value.width/2-widthConstant;
+  const imageHeight = props.value.width/2-heightConstant;
     return (
       <div>
-        <button  className="square" style = {{width:imageWidth, height:imageWidth,'paddingTop':10}} onClick = {props.onClick} >
-          <img className = "image" style = {{width:imageWidth, height:imageWidth}}
+        <button  className="square" style = {{width:imageWidth, height:imageHeight}} onClick = {props.onClick} >
+          <img className = "image" style = {{width:imageWidth, height:imageHeight}}
             src = {require(`./images/short/text/project${props.value.projectnumber}/image${props.value.textnumber}.png`)}
           />
         </button>
@@ -39,6 +54,47 @@ function SquareTextIphone(props){
       </div>
     );
 }
+
+
+function SquareImageIphone(props){
+  const imageWidth = props.value.width/1.8;
+    return (
+      <div>
+        <button className="square" onClick = {props.onClick}  style = {{width:imageWidth, height:imageWidth}}>
+          <img className = "image" style = {{width:imageWidth, height:imageWidth}}
+            src = {require(`./images/short/image/project${props.value.projectnumber}/image${props.value.imagenumber}.png`)}
+          />
+        </button>
+        <Circle quantity = {props.value.imageQuantity} number = {props.value.imagenumber} width= {props.value.width}/>
+      </div>
+    );
+}
+
+function SquareTextIphone(props){
+  const imageWidth = props.value.width/1.8;
+  const imageHeight = props.value.width/1.8;
+    return (
+      <div>
+        <button  className="square" style = {{width:imageWidth, height:imageHeight,'padding-top':10}} onClick = {props.onClick} >
+          <img className = "image" style = {{width:imageWidth, height:imageHeight}}
+            src = {require(`./images/short/text/project${props.value.projectnumber}/image${props.value.textnumber}.png`)}
+          />
+        </button>
+        <Circle quantity = {props.value.textQuantity} number = {props.value.textnumber} width= {props.value.width}/>
+      </div>
+    );
+}
+function SquareProject(props){
+    let path = props.value.projectnumber === 0 ? './images/icons/project.png' : './images/icons/next.png';
+    return (
+      <button  className="square" onClick = {props.onClick}>
+        <img style ={{width:props.value.width/15}}
+          src = {require(`${path}`)}
+        />
+      </button>
+    );
+}
+
 function SquareProjectIphone(props){
     let path = props.value.projectnumber === 0 ? './images/icons/project.png' : './images/icons/next.png';
     return (
@@ -49,6 +105,8 @@ function SquareProjectIphone(props){
       </button>
     );
 }
+
+
 
 class Portfolio extends React.Component {
   constructor(props) {
@@ -79,15 +137,22 @@ class Portfolio extends React.Component {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
+
   handleClick(square){
-    console.log("handleclick is pressed")
+    // let imageQuantity = [3,6,5,8,3,6,1,6];
+    // let textQuantity = [5,2,4,6,5,3,2,2];
     let imageQuantity = [2,4,5,4,4];
     let textQuantity = [2,1,1,1,1,1];
+    // let imageQuantity = [1,1,1,1,1];
+    // let textQuantity =  [1,1,1,1,1];
+
     let projectQuantity = 3;
+
     if(square === 'image'){
         this.setState({
         imagenumber:this.state.imagenumber+1
         })
+
         if(this.state.imagenumber === this.state.imageQuantity){
               this.setState({
               imagenumber:1
@@ -126,8 +191,33 @@ class Portfolio extends React.Component {
 
 
   renderSquare(type) {
+      if(type === 'image'){
+
+        return (
+          <SquareImage value = {this.state}
+          onClick={() => this.handleClick('image')}
+        />
+      )};
+
+      if(type === 'text'){
+        return (
+          <SquareText value = {this.state}
+          onClick={() => this.handleClick('text')}
+        />
+        )
+      }
+      if(type === 'project'){
+        return (
+          <div style ={{'position':'absolute','margin-top':this.state.width/6, 'margin-left':this.state.width/2.4,'background':'transparent'}} >
+            <SquareProject value = {this.state}
+            onClick={() => this.handleClick('project')}
+            />
+          </div>
+        )
+      }
 
       if(type === 'imageIphone'){
+
         return (
           <SquareImageIphone value = {this.state}
           onClick={() => this.handleClick('image')}
@@ -142,9 +232,10 @@ class Portfolio extends React.Component {
         )
       }
 
+
       if(type === 'projectIphone'){
         return (
-          <div style ={{'background':'transparent','paddingTop':40}} >
+          <div style ={{'background':'transparent','padding-top':40}} >
             <SquareProjectIphone value = {this.state}
             onClick={() => this.handleClick('project')}
             />
@@ -155,17 +246,14 @@ class Portfolio extends React.Component {
   }
 
   render() {
-         const widthConstant = 60;
-         let aspectRatio = this.state.height/this.state.width
-         let squareWidth = this.state.width/2-widthConstant
-         let widthDivider = 2
+
+
+    const sayHello = () => {
+         console.log("I am printing width:"+this.state.width)
+         console.log("I am printing height:"+this.state.height)
+         console.log("I am printing aspect ratio:"+this.state.height/this.state.width)
+        let aspectRatio = this.state.height/this.state.width
          if(aspectRatio>1.4){
-           let squareWidth = this.state.width/5-widthConstant}
-
-
-
-         if(aspectRatio>1.4){
-
            return (
            <div className="containerIphone"
              style = {{
@@ -175,6 +263,7 @@ class Portfolio extends React.Component {
              }}>
              {this.renderSquare('imageIphone')}
              {this.renderSquare('textIphone')}
+
              {this.renderSquare('projectIphone')}
            </div>
          )
@@ -187,18 +276,25 @@ class Portfolio extends React.Component {
              'align-items': 'center',
              'align-content':'center',
              }}>
-             <Square value = {this.state} type = {'image'} width = {squareWidth}
-             onClick={() => this.handleClick('image')}/>
-             <Square value = {this.state} type = {'text'} width = {squareWidth}
-             onClick={() => this.handleClick('text')}/>
-             <NavButton value = {this.state}
-             onClick={() => this.handleClick('project')}/>
+             {this.renderSquare('image')}
+             {this.renderSquare('text')}
+             {this.renderSquare('project')}
            </div>)
 
          }
+     }
+    const sayBye = () => {
+         return 'Hello';
+     }
+    return (
+
+      <div>
+        {sayHello()}
+      </div>
 
 
 
+    );
   }
 }
 
