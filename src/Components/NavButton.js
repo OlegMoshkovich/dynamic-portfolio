@@ -9,7 +9,7 @@ function NavButton(props){
     let path = props.value.projectnumber === 0 ? '../images/project.png' : '../images/next.png';
     if(props.config === 'row'){
     return (
-      <div style ={{'position':'absolute','marginTop':props.value.width/6, 'marginLeft':props.value.width/2.4}} >
+      <div style ={{'position':'absolute','marginTop':props.value.width/6+65, 'marginLeft':props.value.width/2.4}} >
       <button  className="square" onClick = {props.onClick}>
         <img style ={{width:props.value.width/15}}
           // src = {require(`${path}`)
