@@ -84,7 +84,7 @@ class Portfolio extends React.Component {
          let config;
 
          if(aspectRatio>1.4){
-           squareWidth = this.state.width/1-widthConstant
+           squareWidth = this.state.width/1.1-widthConstant
            config = 'column'
          }else {
            squareWidth = this.state.width/2-widthConstant
@@ -101,7 +101,6 @@ class Portfolio extends React.Component {
          }}>
          <Square value = {this.state} type = {'image'} width = {squareWidth}
          onClick={() => this.handleClick('image')}/>
-
          <Square value = {this.state} type = {'text'} width = {squareWidth}
          onClick={() => this.handleClick('text')}/>
          <NavButton value = {this.state} config = {config}
