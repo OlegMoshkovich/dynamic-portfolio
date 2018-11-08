@@ -1,12 +1,8 @@
-
-
 .container{
   padding-top: 30px;
   display:flex;
-
   justify-content: flex-left;
   marginTop: 20px;
-
 }
 
 .containerIphone{
@@ -14,10 +10,8 @@
   display:flex;
   flex-direction:column;
   justify-content: center;
-
   'align-items': 'center',
   'align-content':'center'
-
 }
 
 
@@ -38,7 +32,6 @@
 
 .image {
   align-self: center;
-
 }
 
 .square:focus {

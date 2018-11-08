@@ -2,7 +2,7 @@ import React from 'react';
 import '../index.css';
 import Circle from './Circle'
 
-const widthConstant = 60;
+
 
 
 function Square(props){
@@ -12,7 +12,7 @@ function Square(props){
       return (
         <div>
           <button className="square" onClick = {props.onClick}  style = {{width:imageWidth, height:imageWidth}}>
-            <img className = "image" style = {{width:imageWidth, height:imageWidth}}
+            <img alt='square' className = "image" style = {{width:imageWidth, height:imageWidth}}
 
               src = {require(`../images/short/image/project${props.value.projectnumber}/image${props.value.imagenumber}.png`)}
             />
@@ -24,7 +24,7 @@ function Square(props){
       return (
         <div>
           <button  className="square" style = {{width:imageWidth, height:imageWidth}} onClick = {props.onClick} >
-            <img className = "image" style = {{width:imageWidth, height:imageWidth}}
+            <img alt='square text' className = "image" style = {{width:imageWidth, height:imageWidth}}
               src = {require(`../images/short/text/project${props.value.projectnumber}/image${props.value.textnumber}.png`)}
             />
           </button>
