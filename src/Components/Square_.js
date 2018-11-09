@@ -17,6 +17,7 @@ function Square(props){
               src = {require(`../images/short/image/project${props.value.projectnumber}/image${props.value.imagenumber}.png`)}
             />
           </button>
+          <Circle quantity = {props.value.imageQuantity} number = {props.value.imagenumber} width= {props.value.width} />
         </div>
       );
     }else if(props.type === 'text'){
@@ -27,6 +28,7 @@ function Square(props){
               src = {require(`../images/short/text/project${props.value.projectnumber}/image${props.value.textnumber}.png`)}
             />
           </button>
+          <Circle quantity = {props.value.textQuantity} number = {props.value.textnumber} width= {props.value.width}/>
         </div>
       );
     }

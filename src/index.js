@@ -5,6 +5,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import Square from './Components/Square'
 import NavButton from './Components/NavButton'
+import Circle from './Components/Circle'
 
 class Portfolio extends React.Component {
   constructor(props) {
@@ -15,10 +16,12 @@ class Portfolio extends React.Component {
       projectnumber:0,
       width: 0,
       height: 0,
-      imageQuantity:15,
+      imageQuantity:16,
       textQuantity:3
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+    this.handleCircleClick = this.handleCircleClick.bind(this)
+
   }
 
   componentDidMount() {
@@ -32,8 +35,19 @@ class Portfolio extends React.Component {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
+  test(){
+    alert('something')
+  }
+
+
+
+  handleCircleClick(number){
+    console.log("the circle is clicked",number)
+    this.setState({imagenumber:number})
+ }
+
   handleClick(square){
-    console.log("handleclick is pressed")
+    console.log('something is passed into the handleclick' + square)
     let imageQuantity = [2,6,8,4,4];
     let textQuantity = [2,1,1,1,1,1];
     let projectQuantity = 3;
@@ -71,7 +85,7 @@ class Portfolio extends React.Component {
     if(this.state.projectnumber === projectQuantity ){ // if the project number is reached reset the project number
           this.setState({
           projectnumber:0,
-          imageQuantity:15,
+          imageQuantity:16,
           textQuantity:3
         })
       }
@@ -92,6 +106,7 @@ class Portfolio extends React.Component {
          }
 
        return (
+         <div>
        <div className="container"
          style = {{
          'flexDirection': config,
@@ -101,11 +116,20 @@ class Portfolio extends React.Component {
          }}>
          <Square value = {this.state} type = {'image'} width = {squareWidth}
          onClick={() => this.handleClick('image')}/>
+
          <Square value = {this.state} type = {'text'} width = {squareWidth}
          onClick={() => this.handleClick('text')}/>
+
+
          <NavButton value = {this.state} config = {config}
          onClick={() => this.handleClick('project')}/>
-       </div>)
+       </div>
+
+        <Circle quantity = {this.state.imageQuantity} number = {this.state.textnumber} width= {squareWidth}
+        updateParentComponent={this.handleCircleClick}/>
+        </div>
+
+     )
   }
 }
 

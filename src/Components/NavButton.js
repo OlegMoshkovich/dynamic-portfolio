@@ -4,9 +4,8 @@ import '../index.css';
 
 function NavButton(props){
 
-    console.log("printing from NavButton" + props.config)
 
-    
+
     if(props.config === 'row'){
     return (
       <div style ={{'position':'absolute','marginTop':props.value.width/6+65, 'marginLeft':props.value.width/2.4}} >
