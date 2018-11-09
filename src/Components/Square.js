@@ -1,14 +1,12 @@
 import React from 'react';
 import '../index.css';
-import Circle from './Circle'
+
 
 
 
 
 function Square(props){
     const imageWidth = props.width;
-    console.log("this are the props:",props.test)
-
     if(props.type === 'image'){
       return (
         <div>

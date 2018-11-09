@@ -16,14 +16,13 @@ class Portfolio extends React.Component {
       projectnumber:0,
       width: 0,
       height: 0,
-      imageQuantity:16,
+      imageQuantity:15,
       textQuantity:3
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.handleCircleClick = this.handleCircleClick.bind(this)
 
   }
-
   componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
@@ -34,20 +33,16 @@ class Portfolio extends React.Component {
   updateWindowDimensions() {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
-
   test(){
     alert('something')
   }
 
-
-
-  handleCircleClick(number){
-    console.log("the circle is clicked",number)
-    this.setState({imagenumber:number})
+  handleCircleClick(number,type){
+    type === 'image' ? this.setState({imagenumber:parseInt(number)}) : this.setState({textnumber:parseInt(number)})
  }
 
   handleClick(square){
-    console.log('something is passed into the handleclick' + square)
+
     let imageQuantity = [2,6,8,4,4];
     let textQuantity = [2,1,1,1,1,1];
     let projectQuantity = 3;
@@ -85,7 +80,7 @@ class Portfolio extends React.Component {
     if(this.state.projectnumber === projectQuantity ){ // if the project number is reached reset the project number
           this.setState({
           projectnumber:0,
-          imageQuantity:16,
+          imageQuantity:15,
           textQuantity:3
         })
       }
@@ -106,7 +101,7 @@ class Portfolio extends React.Component {
          }
 
        return (
-         <div>
+
        <div className="container"
          style = {{
          'flexDirection': config,
@@ -114,20 +109,29 @@ class Portfolio extends React.Component {
          'alignItems': 'center',
          'alignContent':'center',
          }}>
-         <Square value = {this.state} type = {'image'} width = {squareWidth}
-         onClick={() => this.handleClick('image')}/>
+           <div
+           style = {{
+           'paddingTop': 30
+           }}>
+             <Square value = {this.state} type = {'image'} width = {squareWidth}
+             onClick={() => this.handleClick('image')}/>
+             <Circle quantity = {this.state.imageQuantity} number = {this.state.imagenumber} width= {squareWidth} type ={'image'}
+             updateParentComponent={this.handleCircleClick}/>
+           </div>
 
-         <Square value = {this.state} type = {'text'} width = {squareWidth}
-         onClick={() => this.handleClick('text')}/>
+           <div
+           style = {{
+           'paddingTop': 30
+           }}>
+             <Square value = {this.state} type = {'text'} width = {squareWidth}
+             onClick={() => this.handleClick('text')}/>
+             <Circle quantity = {this.state.textQuantity} number = {this.state.textnumber} width= {squareWidth} type ={'text'}
+             updateParentComponent={this.handleCircleClick}/>
+           </div>
 
-
-         <NavButton value = {this.state} config = {config}
-         onClick={() => this.handleClick('project')}/>
+           <NavButton value = {this.state} config = {config}
+           onClick={() => this.handleClick('project')}/>
        </div>
-
-        <Circle quantity = {this.state.imageQuantity} number = {this.state.textnumber} width= {squareWidth}
-        updateParentComponent={this.handleCircleClick}/>
-        </div>
 
      )
   }

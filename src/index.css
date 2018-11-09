@@ -1,5 +1,11 @@
 .container{
-  padding-top: 30px;
+  display:flex;
+  justify-content: flex-left;
+  marginTop: 20px;
+}
+
+.circleContainer{
+  padding-left: 20px;
   display:flex;
   justify-content: flex-left;
   marginTop: 20px;

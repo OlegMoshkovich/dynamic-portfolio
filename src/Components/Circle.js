@@ -7,33 +7,32 @@ class Circle extends Component{
 
 
   handleClick = (data) => {
-      console.log(data);
+      console.log('circle type is')
       this.props.updateParentComponent(data);
   }
 
   render(){
 
-    console.log(this.props)
-    let width = 50
-    let widthSelected = 50
-    let circleItems = [];
 
+    let width = this.props.width/35
+    let widthSelected = this.props.width/35
+    let circleItems = [];
+    let type = this.props.type
+    console.log('the type in the circle component',type)
 
 
       for (var i = 1; i < this.props.quantity+1; i++) {
-        if(i === this.props.number){
+
+        if(i === parseInt(this.props.number)){
           circleItems.push(
-
-                <img alt= {`${i}`} key = {i}  className = "image" onClick ={(data)=>this.handleClick(data.target.alt)}  style = {{width:widthSelected, height:widthSelected,margin:2}}
+                <img alt= {`${i}`} key = {i}  className = "image" onClick ={(data,type) =>  this.props.updateParentComponent(data.target.alt,this.props.type)}  style = {{width:widthSelected, height:widthSelected,margin:2}}
                 src = {require(`../images/icons/circle_filled.png`)}/>
-
 );
         }else{
+          // console.log('in the else loop- number --',this.props.number)
           circleItems.push(
-
-                <img alt= {`${i}`}  key = {i} className = "image"  onClick ={(data)=>this.handleClick(data.target.alt)}style = {{width:width, height:width,margin:2}}
+                <img alt= {`${i}`}  key = {i} className = "image"  onClick ={(data,type) =>  this.props.updateParentComponent(data.target.alt,this.props.type)} style = {{width:width, height:width,margin:2}}
                 src = {require(`../images/icons/circle.png`)}/>
-
         );
         }
       }
