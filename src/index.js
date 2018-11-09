@@ -90,13 +90,17 @@ class Portfolio extends React.Component {
          const widthConstant = 60;
          let aspectRatio = this.state.height/this.state.width
          let squareWidth;
+         let circleWidth;
          let config;
 
          if(aspectRatio>1.4){
            squareWidth = this.state.width/1.1-widthConstant
+           circleWidth = this.state.width/.8-widthConstant
+
            config = 'column'
          }else {
            squareWidth = this.state.width/2-widthConstant
+           circleWidth = this.state.width/2-widthConstant
            config = 'row'
          }
 
@@ -115,7 +119,7 @@ class Portfolio extends React.Component {
            }}>
              <Square value = {this.state} type = {'image'} width = {squareWidth}
              onClick={() => this.handleClick('image')}/>
-             <Circle quantity = {this.state.imageQuantity} number = {this.state.imagenumber} width= {squareWidth} type ={'image'}
+             <Circle quantity = {this.state.imageQuantity} number = {this.state.imagenumber} width= {circleWidth} type ={'image'}
              updateParentComponent={this.handleCircleClick}/>
            </div>
 
@@ -125,7 +129,7 @@ class Portfolio extends React.Component {
            }}>
              <Square value = {this.state} type = {'text'} width = {squareWidth}
              onClick={() => this.handleClick('text')}/>
-             <Circle quantity = {this.state.textQuantity} number = {this.state.textnumber} width= {squareWidth} type ={'text'}
+             <Circle quantity = {this.state.textQuantity} number = {this.state.textnumber} width= {circleWidth} type ={'text'}
              updateParentComponent={this.handleCircleClick}/>
            </div>
 
