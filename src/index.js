@@ -16,7 +16,7 @@ class Portfolio extends React.Component {
       projectnumber:0,
       width: 0,
       height: 0,
-      imageQuantity:15,
+      imageQuantity:12,
       textQuantity:3
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
@@ -80,7 +80,7 @@ class Portfolio extends React.Component {
     if(this.state.projectnumber === projectQuantity ){ // if the project number is reached reset the project number
           this.setState({
           projectnumber:0,
-          imageQuantity:15,
+          imageQuantity:12,
           textQuantity:3
         })
       }
