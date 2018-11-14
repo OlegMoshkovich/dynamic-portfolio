@@ -14,8 +14,8 @@ class Circle extends Component{
   render(){
 
 
-    let width = this.props.width/35
-    let widthSelected = this.props.width/35
+    let width = this.props.width/20
+    let widthSelected = this.props.width/20
     let circleItems = [];
     let type = this.props.type
 
@@ -30,7 +30,7 @@ class Circle extends Component{
         }else{
           circleItems.push(
                 <img alt= {`${i}`}  key = {i} className = "image"  onClick ={(data,type) =>  this.props.updateParentComponent(data.target.alt,this.props.type)} style = {{width:width, height:width,margin:2}}
-                src = {require(`../images/icons/circle.png`)}/>
+                src = {require(`../images/icons/numbers_black/${i}.png`)}/>
         );
         }
       }
