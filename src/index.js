@@ -17,7 +17,9 @@ class Portfolio extends React.Component {
       width: 0,
       height: 0,
       imageQuantity:12,
-      textQuantity:6
+      textQuantity:6,
+      isLoading:true
+
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.handleCircleClick = this.handleCircleClick.bind(this)
@@ -26,6 +28,9 @@ class Portfolio extends React.Component {
   }
   componentDidMount() {
     this.updateWindowDimensions();
+    this.setState({
+      isLoading:false
+    })
     window.addEventListener('resize', this.updateWindowDimensions);
   }
   componentWillUnmount() {
@@ -52,7 +57,8 @@ class Portfolio extends React.Component {
        textnumber:1,
        imagenumber:1,
        imageQuantity:12,
-       textQuantity:6
+       textQuantity:6,
+       loaded: false
      })
 
  }
@@ -167,6 +173,8 @@ class Portfolio extends React.Component {
   }}
 
   render() {
+    console.log('loading status from the index',this.state.isLoading)
+
          const widthConstant = 60;
          let aspectRatio = this.state.height/this.state.width
          let squareWidth;
@@ -198,7 +206,7 @@ class Portfolio extends React.Component {
            'paddingTop': 30
            }}>
              <Square value = {this.state} type = {'image'} width = {squareWidth}
-             onClick={() => this.handleClick('image')}/>
+             onClick={() => this.handleClick('image')} onLoad={this._onLoad}/>
              <Circle quantity = {this.state.imageQuantity} number = {this.state.imagenumber} width= {circleWidth} type ={'image'}
              updateParentComponent={this.handleCircleClick}/>
            </div>
@@ -208,7 +216,7 @@ class Portfolio extends React.Component {
            'paddingTop': 30
            }}>
              <Square value = {this.state} type = {'text'} width = {squareWidth}
-             onClick={() => this.handleClick('text')}/>
+             onClick={() => this.handleClick('text')} />
              <Circle quantity = {this.state.textQuantity} number = {this.state.textnumber} width= {circleWidth} type ={'text'}
              updateParentComponent={this.handleCircleClick}/>
            </div>
