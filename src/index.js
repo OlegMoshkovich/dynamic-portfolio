@@ -44,7 +44,7 @@ class Portfolio extends React.Component {
 
   handlePrevious(){
     let imageQuantity = [2,6,8,4,4];
-    let textQuantity = [2,7,1,1,1,1];
+    let textQuantity = [2,5,1,1,1,1];
     let projectQuantity = 3;
 
         this.setState({
@@ -68,7 +68,7 @@ class Portfolio extends React.Component {
   handleClick(square){
 
     let imageQuantity = [2,6,8,4,4];
-    let textQuantity = [2,7,1,1,1,1];
+    let textQuantity = [2,5,1,1,1,1];
     let projectQuantity = 3;
 
     if(square === 'image'){
