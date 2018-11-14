@@ -42,9 +42,25 @@ class Portfolio extends React.Component {
     type === 'image' ? this.setState({imagenumber:parseInt(number)}) : this.setState({textnumber:parseInt(number)})
  }
 
+ handleInfo(){
+   let imageQuantity = [12,7,8,4,4];
+   let textQuantity = [6,6,10,1,1,1];
+   let projectQuantity = 3;
+
+       this.setState({
+       projectnumber:0,
+       textnumber:1,
+       imagenumber:1,
+       imageQuantity:12,
+       textQuantity:6
+     })
+
+ }
+
+
   handlePrevious(){
-    let imageQuantity = [12,6,8,4,4];
-    let textQuantity = [6,6,9,1,1,1];
+    let imageQuantity = [12,7,8,4];
+    let textQuantity = [6,6,10,1];
     let projectQuantity = 3;
 
         this.setState({
@@ -57,18 +73,48 @@ class Portfolio extends React.Component {
 
   if(this.state.projectnumber === projectQuantity ){ // if the project number is reached reset the project number
         this.setState({
-        projectnumber:0,
-        imageQuantity:12,
-        textQuantity:6
+        projectnumber:2,
+        imageQuantity:imageQuantity[2],
+        textQuantity:textQuantity[2]
       })
     }
-
+  if(this.state.projectnumber === 1 ){ // if the project number is reached reset the project number
+        this.setState({
+        projectnumber:3,
+        imageQuantity:imageQuantity[3],
+        textQuantity:textQuantity[3]
+      })
+    }
   }
+
+  handleNext(){
+    let imageQuantity = [12,7,8,4];
+    let textQuantity = [6,6,10,1];
+    let projectQuantity = 3;
+
+        this.setState({
+        projectnumber:this.state.projectnumber+1,
+        textnumber:1,
+        imagenumber:1,
+        imageQuantity:imageQuantity[this.state.projectnumber+1],
+        textQuantity:textQuantity[this.state.projectnumber+1]
+      })
+
+
+  if(this.state.projectnumber === 3 ){ // if the project number is reached reset the project number
+        this.setState({
+        projectnumber:1,
+        imageQuantity:imageQuantity[1],
+        textQuantity:textQuantity[1]
+      })
+    }
+  }
+
 
   handleClick(square){
 
-    let imageQuantity = [12,6,8,4,4];
-    let textQuantity = [6,6,9,1,1,1];
+    let imageQuantity = [12,7,8,4,4];
+    let textQuantity = [6,6,10,1,1,1];
     let projectQuantity = 3;
 
     if(square === 'image'){
@@ -76,9 +122,19 @@ class Portfolio extends React.Component {
         imagenumber:this.state.imagenumber+1
         })
         if(this.state.imagenumber === this.state.imageQuantity){
-              this.setState({
-              imagenumber:1
-              })
+
+          if(this.state.projectnumber===0){
+            this.setState({
+            imagenumber:2
+            })
+          }else{
+            this.setState({
+            imagenumber:1
+            })
+          }
+
+
+
             }}
 
     else if(square === 'text'){
@@ -87,12 +143,18 @@ class Portfolio extends React.Component {
         })
 
         if(this.state.textnumber === this.state.textQuantity ){
-              this.setState({
-              textnumber:1
-              })
+          if(this.state.projectnumber===0){
+            this.setState({
+            textnumber:2
+            })
+          }else{
+            this.setState({
+            textnumber:1
+            })
+          }
+
             }
       }else{ // if the project number chanmges reset the counters to 1 and 1
-
           this.setState({
           projectnumber:this.state.projectnumber+1,
           textnumber:1,
@@ -101,13 +163,7 @@ class Portfolio extends React.Component {
           textQuantity:textQuantity[this.state.projectnumber+1]
         })
 
-    if(this.state.projectnumber === projectQuantity ){ // if the project number is reached reset the project number
-          this.setState({
-          projectnumber:0,
-          imageQuantity:12,
-          textQuantity:6
-        })
-      }
+
   }}
 
   render() {
@@ -158,7 +214,7 @@ class Portfolio extends React.Component {
            </div>
 
            <NavButton value = {this.state} config = {config}
-           onClick={() => this.handleClick('project')} prev={()=> this.handlePrevious()}/>
+           onClick={() => this.handleClick('project')} next={()=> this.handleNext()} prev={()=> this.handlePrevious()} info={()=> this.handleInfo()}/>
        </div>
 
      )

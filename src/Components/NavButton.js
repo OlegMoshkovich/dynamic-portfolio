@@ -20,12 +20,17 @@ function NavButton(props){
         <div style ={{'display':'flex', 'position':'absolute','marginTop':props.value.width/6+75, 'marginLeft':props.value.width/2.61}}>
           <div >
           <button  className="square" onClick = {props.prev}>
-            <img alt='navigation' style ={{width:props.value.width/15}} src = {require(`../images/icons/previous.png`)}/>
+            <img alt='navigation' style ={{width:props.value.width/20}} src = {require(`../images/icons/previous.png`)}/>
           </button>
           </div>
           <div>
-          <button  className="square" onClick = {props.onClick}>
-            <img alt='navigation' style ={{width:props.value.width/15}} src = {require(`../images/icons/next.png`)}/>
+          <button  className="square" onClick = {props.info}>
+            <img alt='navigation' style ={{width:props.value.width/20}} src = {require(`../images/icons/home.png`)}/>
+          </button>
+          </div>
+          <div>
+          <button  className="square" onClick = {props.next}>
+            <img alt='navigation' style ={{width:props.value.width/20}} src = {require(`../images/icons/next.png`)}/>
           </button>
           </div>
         </div>
