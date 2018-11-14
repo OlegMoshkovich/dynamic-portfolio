@@ -184,7 +184,6 @@ class Portfolio extends React.Component {
          if(aspectRatio>1.4){
            squareWidth = this.state.width/1.1-widthConstant
            circleWidth = this.state.width/.9-widthConstant
-
            config = 'column'
          }else {
            squareWidth = this.state.width/2-widthConstant
@@ -201,12 +200,18 @@ class Portfolio extends React.Component {
          'alignItems': 'center',
          'alignContent':'center',
          }}>
+
            <div
            style = {{
            'paddingTop': 30
            }}>
-             <Square value = {this.state} type = {'image'} width = {squareWidth}
-             onClick={() => this.handleClick('image')} onLoad={this._onLoad}/>
+
+               <Square value = {this.state} type = {'image'} width = {squareWidth}
+               onClick={() => this.handleClick('image')} onLoad={this._onLoad}/>
+
+
+
+
              <Circle quantity = {this.state.imageQuantity} number = {this.state.imagenumber} width= {circleWidth} type ={'image'}
              updateParentComponent={this.handleCircleClick}/>
            </div>

@@ -14,7 +14,6 @@ function Square(props){
           <button className="square" onClick = {props.onClick}  style = {{width:imageWidth, height:imageWidth}}>
             <img alt='square' className = "image" style = {{width:imageWidth, height:imageWidth}}
               src = {require(`../images/short/image/project${props.value.projectnumber}/image${props.value.imagenumber}.png`)}
-
             />
           </button>
         </div>
