@@ -17,10 +17,11 @@ class Portfolio extends React.Component {
       width: 0,
       height: 0,
       imageQuantity:13,
-      textQuantity:3
+      textQuantity:6
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.handleCircleClick = this.handleCircleClick.bind(this)
+    this.handlePrevious = this.handlePrevious.bind(this)
 
   }
   componentDidMount() {
@@ -41,10 +42,33 @@ class Portfolio extends React.Component {
     type === 'image' ? this.setState({imagenumber:parseInt(number)}) : this.setState({textnumber:parseInt(number)})
  }
 
+  handlePrevious(){
+    let imageQuantity = [2,6,8,4,4];
+    let textQuantity = [2,7,1,1,1,1];
+    let projectQuantity = 3;
+
+        this.setState({
+        projectnumber:this.state.projectnumber-1,
+        textnumber:1,
+        imagenumber:1,
+        imageQuantity:imageQuantity[this.state.projectnumber-1],
+        textQuantity:textQuantity[this.state.projectnumber-1]
+      })
+
+  if(this.state.projectnumber === projectQuantity ){ // if the project number is reached reset the project number
+        this.setState({
+        projectnumber:0,
+        imageQuantity:13,
+        textQuantity:6
+      })
+    }
+
+  }
+
   handleClick(square){
 
     let imageQuantity = [2,6,8,4,4];
-    let textQuantity = [2,1,1,1,1,1];
+    let textQuantity = [2,7,1,1,1,1];
     let projectQuantity = 3;
 
     if(square === 'image'){
@@ -81,7 +105,7 @@ class Portfolio extends React.Component {
           this.setState({
           projectnumber:0,
           imageQuantity:13,
-          textQuantity:3
+          textQuantity:6
         })
       }
   }}
@@ -134,7 +158,7 @@ class Portfolio extends React.Component {
            </div>
 
            <NavButton value = {this.state} config = {config}
-           onClick={() => this.handleClick('project')}/>
+           onClick={() => this.handleClick('project')} prev={()=> this.handlePrevious()}/>
        </div>
 
      )
