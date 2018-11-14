@@ -16,7 +16,7 @@ class Portfolio extends React.Component {
       projectnumber:0,
       width: 0,
       height: 0,
-      imageQuantity:13,
+      imageQuantity:12,
       textQuantity:6
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
@@ -43,8 +43,8 @@ class Portfolio extends React.Component {
  }
 
   handlePrevious(){
-    let imageQuantity = [2,6,8,4,4];
-    let textQuantity = [2,5,1,1,1,1];
+    let imageQuantity = [12,6,8,4,4];
+    let textQuantity = [6,6,1,1,1,1];
     let projectQuantity = 3;
 
         this.setState({
@@ -58,7 +58,7 @@ class Portfolio extends React.Component {
   if(this.state.projectnumber === projectQuantity ){ // if the project number is reached reset the project number
         this.setState({
         projectnumber:0,
-        imageQuantity:13,
+        imageQuantity:12,
         textQuantity:6
       })
     }
@@ -67,8 +67,8 @@ class Portfolio extends React.Component {
 
   handleClick(square){
 
-    let imageQuantity = [2,6,8,4,4];
-    let textQuantity = [2,5,1,1,1,1];
+    let imageQuantity = [12,6,8,4,4];
+    let textQuantity = [6,6,1,1,1,1];
     let projectQuantity = 3;
 
     if(square === 'image'){
@@ -104,7 +104,7 @@ class Portfolio extends React.Component {
     if(this.state.projectnumber === projectQuantity ){ // if the project number is reached reset the project number
           this.setState({
           projectnumber:0,
-          imageQuantity:13,
+          imageQuantity:12,
           textQuantity:6
         })
       }
