@@ -34,29 +34,43 @@ function NavButton(props){
           </button>
           </div>
         </div>
-
-
     );
-
   }
 
   }else{
-    return (
-      <div style ={{'display':'flex','background':'transparent','paddingTop':40}} >
-        <div >
+    if(props.value.projectnumber === 0){
+      return (
+        <div style ={{'marginTop':80}} >
         <button  className="square" onClick = {props.onClick}>
-          <img alt='navigation' style ={{width:props.value.width/5}} src = {require(`../images/icons/previous.png`)}/>
+          <img alt='navigation' style ={{width:props.value.width/10}}
+            // src = {require(`${path}`)
+            src = {props.value.projectnumber === 0 ? require(`../images/icons/project.png`) : require(`../images/icons/next.png`)}/>
         </button>
         </div>
-        <div>
-        <button  className="square" onClick = {props.onClick}>
-          <img alt='navigation' style ={{width:props.value.width/5}} src = {require(`../images/icons/next.png`)}/>
-        </button>
+      );
+    }else{
+      return (
+        <div style ={{'display':'flex', 'marginTop':80}}>
+          <div >
+          <button  className="square" onClick = {props.prev}>
+            <img alt='navigation' style ={{width:props.value.width/10}} src = {require(`../images/icons/previous.png`)}/>
+          </button>
+          </div>
+          <div>
+          <button  className="square" onClick = {props.info}>
+            <img alt='navigation' style ={{width:props.value.width/10}} src = {require(`../images/icons/home.png`)}/>
+          </button>
+          </div>
+          <div>
+          <button  className="square" onClick = {props.next}>
+            <img alt='navigation' style ={{width:props.value.width/10}} src = {require(`../images/icons/next.png`)}/>
+          </button>
+          </div>
         </div>
-      </div>
     );
 
   }
+}
 }
 
 export default NavButton;
