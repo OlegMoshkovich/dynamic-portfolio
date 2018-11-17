@@ -1,46 +1,47 @@
-import React from 'react';
+import React,{Component} from 'react';
 import '../index.css';
 
+class Square extends Component{
 
-function Square(props){
-  console.log('isLoading from the square',props.loading)
-    const imageWidth = props.width;
+  constructor(props) {
+    super(props);
+    this.state = {
+    isLoading:true,
+    };
+    this.setLoading = this.setLoading.bind(this);
+  }
 
-    if(props.type === 'image'){
-      if(props.isLoading){
-        return (
-          <div>
-            <button className="square" onClick = {props.onClick}  style = {{width:imageWidth, height:imageWidth}}>
-              <img alt='square' className = "image" style = {{width:imageWidth, height:imageWidth}}
-                src = {require(`../images/icons/loading.png`)}
-              />
-            </button>
-          </div>
-        );
+setLoading(){
+  this.setState({isLoading:false})
+}
+render(){
 
-      }else{
-        return (
-          <div>
-            <button className="square" onClick = {props.onClick}  style = {{width:imageWidth, height:imageWidth}}>
-              <img alt='square' className = "image" style = {{width:imageWidth, height:imageWidth}}
-                src = {require(`../images/short/image/project${props.value.projectnumber}/image${props.value.imagenumber}.png`)}
-              />
-            </button>
-          </div>
-        );
-      }
-
-    }else if(props.type === 'text'){
+  console.log('laoding status from the square',this.state.isLoading)
+    const imageWidth = this.props.width;
+    if(this.props.type === 'image'){
       return (
         <div>
-          <button  className="square" style = {{width:imageWidth, height:imageWidth}} onClick = {props.onClick} >
+        
+          <button className="square" onClick = {this.props.onClick}  style = {{width:imageWidth, height:imageWidth}}>
+            <img alt='square' className = "image" style = {{width:imageWidth, height:imageWidth}} onLoad={()=>this.setLoading()}
+              src = {require(`../images/short/image/project${this.props.value.projectnumber}/image${this.props.value.imagenumber}.png`)}
+            />
+
+          </button>
+        </div>
+      );
+    }else if(this.props.type === 'text'){
+      return (
+        <div>
+          <button  className="square" style = {{width:imageWidth, height:imageWidth}} onClick = {this.props.onClick} >
             <img alt='square text' className = "image" style = {{width:imageWidth, height:imageWidth}}
-              src = {require(`../images/short/text/project${props.value.projectnumber}/image${props.value.textnumber}.png`)}
+              src = {require(`../images/short/text/project${this.props.value.projectnumber}/image${this.props.value.textnumber}.png`)}
             />
           </button>
         </div>
       );
     }
+}
 }
 
 export default Square;

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
-
 import Square from './Components/Square'
 import NavButton from './Components/NavButton'
 import Circle from './Components/Circle'
@@ -18,22 +17,16 @@ class Portfolio extends React.Component {
       height: 0,
       imageQuantity:12,
       textQuantity:6,
-      isLoading:true
-
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.handleCircleClick = this.handleCircleClick.bind(this)
     this.handlePrevious = this.handlePrevious.bind(this)
+    this.isLoading = this.isLoading.bind(this)
 
   }
   componentDidMount() {
-    console.log('in the beginning of the component did mount is loading', this.state.isLoading)
     this.updateWindowDimensions();
-    this.setState({
-      isLoading:false
-    })
     window.addEventListener('resize', this.updateWindowDimensions);
-    console.log('at the end of the component did mount is loading', this.state.isLoading)
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions);
@@ -58,7 +51,7 @@ class Portfolio extends React.Component {
        imagenumber:1,
        imageQuantity:12,
        textQuantity:6,
-       loaded: false
+
      })
 
  }
@@ -117,6 +110,11 @@ class Portfolio extends React.Component {
   }
 
 
+  isLoading(){
+   this.setState({isLoading:false})
+   console.log('loading status:',this.state.isLoading)
+  }
+
   handleClick(square){
 
     let imageQuantity = [12,10,7];
@@ -173,7 +171,6 @@ class Portfolio extends React.Component {
   }}
 
   render() {
-    console.log('loading status from the index',this.state.isLoading)
 
          const widthConstant = 60;
          let aspectRatio = this.state.height/this.state.width
@@ -191,6 +188,7 @@ class Portfolio extends React.Component {
            config = 'row'
          }
 
+
        return (
 
        <div className="container"
@@ -206,12 +204,9 @@ class Portfolio extends React.Component {
            'paddingTop': 30
            }}>
 
-               <Square value = {this.state} type = {'image'} width = {squareWidth}
-               onClick={() => this.handleClick('image')} loading = {this.state.isLoading} />
 
-
-
-
+             <Square value = {this.state} type = {'image'} width = {squareWidth}
+             onClick={() => this.handleClick('image')} loading = {() =>this.isLoading()}/>
              <Circle quantity = {this.state.imageQuantity} number = {this.state.imagenumber} width= {circleWidth} type ={'image'}
              updateParentComponent={this.handleCircleClick}/>
            </div>
@@ -221,7 +216,8 @@ class Portfolio extends React.Component {
            'paddingTop': 30
            }}>
              <Square value = {this.state} type = {'text'} width = {squareWidth}
-             onClick={() => this.handleClick('text')} loading = {this.state.isLoading}/>
+             onClick={() => this.handleClick('text')} />
+
              <Circle quantity = {this.state.textQuantity} number = {this.state.textnumber} width= {circleWidth} type ={'text'}
              updateParentComponent={this.handleCircleClick}/>
            </div>
