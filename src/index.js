@@ -207,7 +207,7 @@ class Portfolio extends React.Component {
            }}>
 
                <Square value = {this.state} type = {'image'} width = {squareWidth}
-               onClick={() => this.handleClick('image')} onLoad={this._onLoad}/>
+               onClick={() => this.handleClick('image')} loading = {this.state.isLoading} />
 
 
 
@@ -221,7 +221,7 @@ class Portfolio extends React.Component {
            'paddingTop': 30
            }}>
              <Square value = {this.state} type = {'text'} width = {squareWidth}
-             onClick={() => this.handleClick('text')} />
+             onClick={() => this.handleClick('text')} loading = {this.state.isLoading}/>
              <Circle quantity = {this.state.textQuantity} number = {this.state.textnumber} width= {circleWidth} type ={'text'}
              updateParentComponent={this.handleCircleClick}/>
            </div>
