@@ -2,9 +2,6 @@ import React from 'react';
 import '../index.css';
 
 
-
-
-
 function Square(props){
     const imageWidth = props.width;
 

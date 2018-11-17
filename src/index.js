@@ -27,11 +27,13 @@ class Portfolio extends React.Component {
 
   }
   componentDidMount() {
+    console.log('in the beginning of the component did mount is loading', this.state.isLoading)
     this.updateWindowDimensions();
     this.setState({
       isLoading:false
     })
     window.addEventListener('resize', this.updateWindowDimensions);
+    console.log('at the end of the component did mount is loading', this.state.isLoading)
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions);
@@ -39,9 +41,7 @@ class Portfolio extends React.Component {
   updateWindowDimensions() {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
-  test(){
-    alert('something')
-  }
+
 
   handleCircleClick(number,type){
     type === 'image' ? this.setState({imagenumber:parseInt(number)}) : this.setState({textnumber:parseInt(number)})
