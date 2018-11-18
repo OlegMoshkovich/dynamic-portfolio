@@ -88,7 +88,7 @@ class Portfolio extends React.Component {
   }
 
   handleNext(){
-    let imageQuantity = [13,10,7];
+    let imageQuantity = [13,11,7];
     let textQuantity = [6,10,6];
 
 
@@ -118,7 +118,7 @@ class Portfolio extends React.Component {
 
   handleClick(square){
 this.setState({isLoading:true})
-    let imageQuantity = [13,10,7];
+    let imageQuantity = [13,11,7];
     let textQuantity = [6,10,6];
 
 
