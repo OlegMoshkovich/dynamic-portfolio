@@ -59,8 +59,8 @@ class Portfolio extends React.Component {
 
 
   handlePrevious(){
-    let imageQuantity = [13,10,7];
-    let textQuantity = [6,10,6];
+    let imageQuantity = [13,11,7,10];
+    let textQuantity = [6,10,6,10];
 
 
         this.setState({
@@ -71,25 +71,25 @@ class Portfolio extends React.Component {
         textQuantity:textQuantity[this.state.projectnumber-1]
       })
 
-  if(this.state.projectnumber === 2 ){ // if the project number is reached reset the project number
-        this.setState({
-        projectnumber:1,
-        imageQuantity:imageQuantity[1],
-        textQuantity:textQuantity[1]
-      })
-    }
-  if(this.state.projectnumber === 1 ){ // if the project number is reached reset the project number
+  if(this.state.projectnumber === 3 ){ // if the project number is reached reset the project number
         this.setState({
         projectnumber:2,
         imageQuantity:imageQuantity[2],
         textQuantity:textQuantity[2]
       })
     }
+  if(this.state.projectnumber === 1 ){ // if the project number is reached reset the project number
+        this.setState({
+        projectnumber:3,
+        imageQuantity:imageQuantity[3],
+        textQuantity:textQuantity[3]
+      })
+    }
   }
 
   handleNext(){
-    let imageQuantity = [13,11,7];
-    let textQuantity = [6,10,6];
+    let imageQuantity = [13,11,7,10];
+    let textQuantity = [6,10,6,10];
 
 
         this.setState({
@@ -101,7 +101,7 @@ class Portfolio extends React.Component {
       })
 
 
-  if(this.state.projectnumber === 2 ){ // if the project number is reached reset the project number
+  if(this.state.projectnumber === 3 ){ // if the project number is reached reset the project number
         this.setState({
         projectnumber:1,
         imageQuantity:imageQuantity[1],
@@ -118,8 +118,8 @@ class Portfolio extends React.Component {
 
   handleClick(square){
 this.setState({isLoading:true})
-    let imageQuantity = [13,11,7];
-    let textQuantity = [6,10,6];
+    let imageQuantity = [13,11,7,10];
+    let textQuantity = [6,10,6,10];
 
 
     if(square === 'image'){
