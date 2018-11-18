@@ -17,13 +17,13 @@ class Circle extends Component{
     let width = this.props.width/20
     let widthSelected = this.props.width/20
     let circleItems = [];
-    let type = this.props.type
+  
 
 
 
       for (var i = 1; i < this.props.quantity+1; i++) {
 
-        if(i === parseInt(this.props.number)){
+        if(i === parseInt(this.props.number,10)){
           circleItems.push(
                 <img alt= {`${i}`} key = {i}  className = "image" onClick ={(data,type) =>  this.props.updateParentComponent(data.target.alt,this.props.type)}  style = {{width:widthSelected, height:widthSelected,margin:2}}
                 src = {require(`../images/icons/circle_filled.png`)}/>);

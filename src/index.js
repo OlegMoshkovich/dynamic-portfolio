@@ -15,8 +15,9 @@ class Portfolio extends React.Component {
       projectnumber:0,
       width: 0,
       height: 0,
-      imageQuantity:12,
+      imageQuantity:13,
       textQuantity:6,
+      isLoading:true
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.handleCircleClick = this.handleCircleClick.bind(this)
@@ -25,6 +26,8 @@ class Portfolio extends React.Component {
 
   }
   componentDidMount() {
+
+
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
   }
@@ -37,19 +40,17 @@ class Portfolio extends React.Component {
 
 
   handleCircleClick(number,type){
-    type === 'image' ? this.setState({imagenumber:parseInt(number)}) : this.setState({textnumber:parseInt(number)})
+    type === 'image' ? this.setState({imagenumber:parseInt(number,10)}) : this.setState({textnumber:parseInt(number,10)})
  }
 
  handleInfo(){
-   let imageQuantity = [12,10,7];
-   let textQuantity = [6,10,6];
-   let projectQuantity = 2;
+
 
        this.setState({
        projectnumber:0,
        textnumber:1,
        imagenumber:1,
-       imageQuantity:12,
+       imageQuantity:13,
        textQuantity:6,
 
      })
@@ -58,9 +59,9 @@ class Portfolio extends React.Component {
 
 
   handlePrevious(){
-    let imageQuantity = [12,10,7];
+    let imageQuantity = [13,10,7];
     let textQuantity = [6,10,6];
-    let projectQuantity = 2;
+
 
         this.setState({
         projectnumber:this.state.projectnumber-1,
@@ -87,9 +88,9 @@ class Portfolio extends React.Component {
   }
 
   handleNext(){
-    let imageQuantity = [12,10,7];
+    let imageQuantity = [13,10,7];
     let textQuantity = [6,10,6];
-    let projectQuantity = 2;
+
 
         this.setState({
         projectnumber:this.state.projectnumber+1,
@@ -112,14 +113,14 @@ class Portfolio extends React.Component {
 
   isLoading(){
    this.setState({isLoading:false})
-   console.log('loading status:',this.state.isLoading)
+   console.log('is loading is fired')
   }
 
   handleClick(square){
-
-    let imageQuantity = [12,10,7];
+this.setState({isLoading:true})
+    let imageQuantity = [13,10,7];
     let textQuantity = [6,10,6];
-    let projectQuantity = 2;
+
 
     if(square === 'image'){
         this.setState({
@@ -129,7 +130,7 @@ class Portfolio extends React.Component {
 
           if(this.state.projectnumber===0){
             this.setState({
-            imagenumber:2
+            imagenumber:3
             })
           }else{
             this.setState({
@@ -172,6 +173,7 @@ class Portfolio extends React.Component {
 
   render() {
 
+        console.log("isLoading from the index",this.state.isLoading)
          const widthConstant = 60;
          let aspectRatio = this.state.height/this.state.width
          let squareWidth;
