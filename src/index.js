@@ -42,18 +42,14 @@ class Portfolio extends React.Component {
   }
 
 
-
-
   cycle(index){
 
-    let order = [9,3,7,11,8,9,1,1]
-    let orderText = [2,2,2,2,2,2,2,2,5]
+    let order = [9,3,7,11,8,9,1]
+    let orderText = [2,2,2,2,2,2,5]
     if (index >= order.length) {
       this.setState({
         imagenumber:1
-
       })
-
         return;
     }
 
@@ -68,33 +64,24 @@ class Portfolio extends React.Component {
 
   }
 
-
-
-
   handleCircleClick(number,type){
     type === 'image' ? this.setState({imagenumber:parseInt(number,10)}) : this.setState({textnumber:parseInt(number,10)})
   }
 
  handleInfo(){
-
-
        this.setState({
        projectnumber:0,
        textnumber:1,
        imagenumber:1,
        imageQuantity:12,
        textQuantity:5,
-
      })
-
  }
 
 
   handlePrevious(){
     let imageQuantity = [12,11,7,10];
     let textQuantity = [5,10,6,10];
-
-
         this.setState({
         projectnumber:this.state.projectnumber-1,
         textnumber:1,
@@ -152,12 +139,10 @@ class Portfolio extends React.Component {
     let imageQuantity = [12,11,7,10];
     let textQuantity = [5,10,6,10];
 
-
     if(square === 'image'){
         this.setState({
         imagenumber:this.state.imagenumber+1
         })
-
         if(this.state.imagenumber === this.state.imageQuantity){
           if(this.state.projectnumber===0){
             this.setState({
@@ -168,9 +153,6 @@ class Portfolio extends React.Component {
             imagenumber:1
             })
           }
-
-
-
             }}
 
     else if(square === 'text'){
@@ -237,12 +219,10 @@ class Portfolio extends React.Component {
          'alignItems': 'center',
          'alignContent':'center',
          }}>
-
            <div
            style = {{
            'paddingTop': 30
            }}>
-
 
              <Square value = {this.state} type = {'image'} width = {squareWidth}
              onClick={() => this.handleClick('image')} loading = {() =>this.isLoading()}/>

@@ -36,6 +36,22 @@
   text-align: center;
 }
 
+.projects {
+  background: #fff;
+  border: 0px solid #fff;
+  padding: 0;
+  text-align: center;
+  transform: scale(1);
+  -webkit-animation-name: example;
+}
+@keyframes example {
+    0%   { transform: scale(0.1)}
+
+    50%  {transform: scale(1)}
+
+    100% {transform: scale(0.1)}
+}
+
 .image {
   align-self: center;
 }
@@ -57,7 +73,8 @@
   background-color:#ffffff ;
   border: none;
   border-radius: 100px;
-  box-shadow: .5px .5px .5px.5px #999;
+  box-shadow: .5px .5px .5px .5px #999;
+
 }
 
 .circle:hover {background-color: #0029FF}
