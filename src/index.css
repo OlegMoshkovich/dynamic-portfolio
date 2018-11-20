@@ -47,3 +47,23 @@
 .kbd-navigation .square:focus {
   background: #ddd;
 }
+.circle {
+  padding: 2px 2px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #ffffff ;
+  background-color:#ffffff ;
+  border: none;
+  border-radius: 100px;
+  box-shadow: .5px .5px .5px.5px #999;
+}
+
+.circle:hover {background-color: #0029FF}
+
+.circle:active {
+  background-color: #0029FF;
+  box-shadow: 0 1px #666;
+  transform: translateY(1px);
+}
