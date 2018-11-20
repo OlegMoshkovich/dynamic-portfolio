@@ -7,6 +7,7 @@ import NavButton from './Components/NavButton'
 import Circle from './Components/Circle'
 
 class Portfolio extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -16,8 +17,9 @@ class Portfolio extends React.Component {
       width: 0,
       height: 0,
       imageQuantity:12,
-      textQuantity:6,
-      isLoading:true
+      textQuantity:5,
+      isLoading:true,
+      count:0
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.handleCircleClick = this.handleCircleClick.bind(this)
@@ -44,11 +46,11 @@ class Portfolio extends React.Component {
 
   cycle(index){
 
-    let order = [9,3,7,11,1]
-    let orderText = [2,2,2,2,2]
-    if (index >= 13) {
+    let order = [9,3,7,11,8,9,1,1]
+    let orderText = [2,2,2,2,2,2,2,2,5]
+    if (index >= order.length) {
       this.setState({
-        imagenumber:9
+        imagenumber:1
 
       })
 
@@ -57,11 +59,12 @@ class Portfolio extends React.Component {
 
     console.log(order[index]);
     this.setState({
-      imagenumber:index
+      imagenumber:order[index],
+      textnumber:orderText[index]
 
     })
     index += 1;
-    setTimeout(this.cycle.bind({}, index), 100);
+    setTimeout(this.cycle.bind({}, index), 1300);
 
   }
 
@@ -80,7 +83,7 @@ class Portfolio extends React.Component {
        textnumber:1,
        imagenumber:1,
        imageQuantity:12,
-       textQuantity:6,
+       textQuantity:5,
 
      })
 
@@ -89,7 +92,7 @@ class Portfolio extends React.Component {
 
   handlePrevious(){
     let imageQuantity = [12,11,7,10];
-    let textQuantity = [6,10,6,10];
+    let textQuantity = [5,10,6,10];
 
 
         this.setState({
@@ -118,7 +121,7 @@ class Portfolio extends React.Component {
 
   handleNext(){
     let imageQuantity = [12,11,7,10];
-    let textQuantity = [6,10,6,10];
+    let textQuantity = [5,10,6,10];
 
 
         this.setState({
@@ -147,15 +150,15 @@ class Portfolio extends React.Component {
   handleClick(square){
     this.setState({isLoading:true})
     let imageQuantity = [12,11,7,10];
-    let textQuantity = [6,10,6,10];
+    let textQuantity = [5,10,6,10];
 
 
     if(square === 'image'){
         this.setState({
         imagenumber:this.state.imagenumber+1
         })
-        if(this.state.imagenumber === this.state.imageQuantity){
 
+        if(this.state.imagenumber === this.state.imageQuantity){
           if(this.state.projectnumber===0){
             this.setState({
             imagenumber:3
@@ -175,9 +178,11 @@ class Portfolio extends React.Component {
           textnumber:this.state.textnumber+1
         })
 
-        if(this.state.textnumber === 1 && this.state.projectnumber === 0 ){
-          console.log('here')
+        if(this.state.textnumber === 1 && this.state.projectnumber === 0 && this.state.count === 0 ){
           this.cycle(1)
+          this.setState({
+            count:1
+          })
         }
 
         if(this.state.textnumber === this.state.textQuantity ){
