@@ -13,6 +13,7 @@ function NavButton(props){
             // src = {require(`${path}`)
             src = {props.value.projectnumber === 0 ? require(`../images/icons/project.png`) : require(`../images/icons/next.png`)}/>
         </button>
+
         </div>
       );
     }else{

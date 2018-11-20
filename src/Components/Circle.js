@@ -17,7 +17,7 @@ class Circle extends Component{
     let width = this.props.width/20
     let widthSelected = this.props.width/20
     let circleItems = [];
-  
+
 
 
 
@@ -25,7 +25,7 @@ class Circle extends Component{
 
         if(i === parseInt(this.props.number,10)){
           circleItems.push(
-                <img alt= {`${i}`} key = {i}  className = "image" onClick ={(data,type) =>  this.props.updateParentComponent(data.target.alt,this.props.type)}  style = {{width:widthSelected, height:widthSelected,margin:2}}
+                <img alt= {`${i}`} key = {i}  className = "image" onClick ={(data,type) =>  this.props.updateParentComponent(data.target.alt,this.props.type)}  style = {{width:widthSelected, height:widthSelected,margin:2,boxShadow: 10}}
                 src = {require(`../images/icons/circle_filled.png`)}/>);
         }else{
           circleItems.push(

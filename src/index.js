@@ -23,6 +23,7 @@ class Portfolio extends React.Component {
     this.handleCircleClick = this.handleCircleClick.bind(this)
     this.handlePrevious = this.handlePrevious.bind(this)
     this.isLoading = this.isLoading.bind(this)
+    this.cycle = this.cycle.bind(this)
 
   }
   componentDidMount() {
@@ -39,9 +40,37 @@ class Portfolio extends React.Component {
   }
 
 
+
+
+  cycle(index){
+
+    let order = [9,3,7,11,1]
+    let orderText = [2,2,2,2,2]
+    if (index >= 13) {
+      this.setState({
+        imagenumber:9
+
+      })
+
+        return;
+    }
+
+    console.log(order[index]);
+    this.setState({
+      imagenumber:index
+
+    })
+    index += 1;
+    setTimeout(this.cycle.bind({}, index), 100);
+
+  }
+
+
+
+
   handleCircleClick(number,type){
     type === 'image' ? this.setState({imagenumber:parseInt(number,10)}) : this.setState({textnumber:parseInt(number,10)})
- }
+  }
 
  handleInfo(){
 
@@ -113,11 +142,10 @@ class Portfolio extends React.Component {
 
   isLoading(){
    this.setState({isLoading:false})
-   console.log('is loading is fired')
   }
 
   handleClick(square){
-this.setState({isLoading:true})
+    this.setState({isLoading:true})
     let imageQuantity = [12,11,7,10];
     let textQuantity = [6,10,6,10];
 
@@ -147,6 +175,11 @@ this.setState({isLoading:true})
           textnumber:this.state.textnumber+1
         })
 
+        if(this.state.textnumber === 1 && this.state.projectnumber === 0 ){
+          console.log('here')
+          this.cycle(1)
+        }
+
         if(this.state.textnumber === this.state.textQuantity ){
           if(this.state.projectnumber===0){
             this.setState({
@@ -173,7 +206,6 @@ this.setState({isLoading:true})
 
   render() {
 
-        console.log("isLoading from the index",this.state.isLoading)
          const widthConstant = 60;
          let aspectRatio = this.state.height/this.state.width
          let squareWidth;
@@ -225,7 +257,10 @@ this.setState({isLoading:true})
            </div>
 
            <NavButton value = {this.state} config = {config}
-           onClick={() => this.handleClick('project')} next={()=> this.handleNext()} prev={()=> this.handlePrevious()} info={()=> this.handleInfo()}/>
+           onClick={() => this.handleClick('project')} play={()=>this.cycle(0)} next={()=> this.handleNext()} prev={()=> this.handlePrevious()} info={()=> this.handleInfo()}/>
+
+
+
        </div>
 
      )
