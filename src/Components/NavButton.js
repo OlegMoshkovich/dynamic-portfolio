@@ -18,7 +18,7 @@ function NavButton(props){
       );
     }else{
       return (
-        <div style ={{'display':'flex', 'position':'absolute','marginTop':props.value.width/6+75, 'marginLeft':props.value.width/2.61}}>
+        <div style ={{'display':'flex', 'position':'absolute','marginTop':props.value.width/6+75,'marginBottom':12, 'marginLeft':props.value.width/2.61}}>
           <div >
           <button  className="square" onClick = {props.prev}>
             <img alt='navigation' style ={{width:props.value.width/20}} src = {require(`../images/icons/previous.png`)}/>
@@ -41,9 +41,9 @@ function NavButton(props){
   }else{
     if(props.value.projectnumber === 0){
       return (
-        <div style ={{'marginTop':80}} >
+        <div style ={{'marginTop':20}} >
         <button  className="square" onClick = {props.onClick}>
-          <img alt='navigation' style ={{width:props.value.width/10}}
+          <img alt='navigation' style ={{width:props.value.width/8}}
             // src = {require(`${path}`)
             src = {props.value.projectnumber === 0 ? require(`../images/icons/project.png`) : require(`../images/icons/next.png`)}/>
         </button>
@@ -51,7 +51,7 @@ function NavButton(props){
       );
     }else{
       return (
-        <div style ={{'display':'flex', 'marginTop':80}}>
+        <div style ={{'display':'flex', 'marginTop':30}}>
           <div >
           <button  className="square" onClick = {props.prev}>
             <img alt='navigation' style ={{width:props.value.width/10}} src = {require(`../images/icons/previous.png`)}/>

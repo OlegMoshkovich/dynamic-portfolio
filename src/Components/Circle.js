@@ -25,11 +25,11 @@ class Circle extends Component{
 
         if(i === parseInt(this.props.number,10)){
           circleItems.push(
-                <img alt= {`${i}`} key = {i}  className = "circle" onClick ={(data,type) =>  this.props.updateParentComponent(data.target.alt,this.props.type)}  style = {{width:widthSelected, height:widthSelected,margin:2,boxShadow: 10}}
+                <img alt= {`${i}`} key = {i}  className = "square" onClick ={(data,type) =>  this.props.updateParentComponent(data.target.alt,this.props.type)}  style = {{width:widthSelected, height:widthSelected, margin:2}}
                 src = {require(`../images/icons/circle_filled.png`)}/>);
         }else{
           circleItems.push(
-                <img alt= {`${i}`}  key = {i} className = "circle"  onClick ={(data,type) =>  this.props.updateParentComponent(data.target.alt,this.props.type)} style = {{width:width, height:width,margin:2}}
+                <img alt= {`${i}`}  key = {i} className = "square"  onClick ={(data,type) =>  this.props.updateParentComponent(data.target.alt,this.props.type)} style = {{width:width, height:width,margin:2}}
                 src = {require(`../images/icons/numbers_black/${i}.png`)}/>
         );
         }

@@ -160,12 +160,12 @@ class Portfolio extends React.Component {
           textnumber:this.state.textnumber+1
         })
 
-        if(this.state.textnumber === 1 && this.state.projectnumber === 0 && this.state.count === 0 ){
-          this.cycle(1)
-          this.setState({
-            count:1
-          })
-        }
+        // if(this.state.textnumber === 1 && this.state.projectnumber === 0 && this.state.count === 0 ){
+        //   this.cycle(1)
+        //   this.setState({
+        //     count:1
+        //   })
+        // }
 
         if(this.state.textnumber === this.state.textQuantity ){
           if(this.state.projectnumber===0){
