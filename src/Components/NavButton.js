@@ -9,9 +9,10 @@ function NavButton(props){
 
       return (
         <div style ={{'position':'absolute','marginTop':props.value.width/6+75, 'marginLeft':props.value.width/2.4}} >
+
         <button  className="square" onClick = {props.onClick}>
           <img alt='navigation' style ={{width:props.value.width/20}}
-            src = {props.value.projectnumber === 0 ? require(`../images/icons/project.png`) : require(`../images/icons/next.png`)}/>
+            src = {props.value.projectnumber === 0 ? require(`../images/icons/more.png`) : require(`../images/icons/next.png`)}/>
         </button>
 
         </div>
