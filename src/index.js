@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
-
 import Square from './Components/Square'
 import Circle from './Components/Circle'
-
 import SquareWide from './Components/SquareWide'
 import CircleWide from './Components/CircleWide'
 
 import NavButton from './Components/NavButton'
+
 
 class Portfolio extends React.Component {
 
@@ -34,7 +32,6 @@ class Portfolio extends React.Component {
     this.cycle = this.cycle.bind(this)
 
   }
-
   componentDidMount() {
 
 
@@ -48,6 +45,98 @@ class Portfolio extends React.Component {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
+
+  cycle(index){
+
+    let order = [9,3,7,11,8,9,1]
+    let orderText = [2,2,2,2,2,2,5]
+    if (index >= order.length) {
+      this.setState({
+        imagenumber:1
+      })
+        return;
+    }
+
+    console.log(order[index]);
+    this.setState({
+      imagenumber:order[index],
+      textnumber:orderText[index]
+
+    })
+    index += 1;
+    setTimeout(this.cycle.bind({}, index), 1300);
+
+  }
+
+  handleCircleClick(number,type){
+    type === 'image' ? this.setState({imagenumber:parseInt(number,10)}) : this.setState({textnumber:parseInt(number,10)})
+  }
+
+ handleInfo(){
+       this.setState({
+       projectnumber:0,
+       textnumber:1,
+       imagenumber:1,
+       imageQuantity:11,
+       textQuantity:5,
+     })
+ }
+
+
+  handlePrevious(){
+    let imageQuantity = [12,11,7,10];
+    let textQuantity = [5,10,6,10];
+        this.setState({
+        projectnumber:this.state.projectnumber-1,
+        textnumber:1,
+        imagenumber:1,
+        imageQuantity:imageQuantity[this.state.projectnumber-1],
+        textQuantity:textQuantity[this.state.projectnumber-1]
+      })
+
+  if(this.state.projectnumber === 3 ){ // if the project number is reached reset the project number
+        this.setState({
+        projectnumber:2,
+        imageQuantity:imageQuantity[2],
+        textQuantity:textQuantity[2]
+      })
+    }
+  if(this.state.projectnumber === 1 ){ // if the project number is reached reset the project number
+        this.setState({
+        projectnumber:3,
+        imageQuantity:imageQuantity[3],
+        textQuantity:textQuantity[3]
+      })
+    }
+  }
+
+  handleNext(){
+    let imageQuantity = [12,11,7,10];
+    let textQuantity = [5,10,6,10];
+
+
+        this.setState({
+        projectnumber:this.state.projectnumber+1,
+        textnumber:1,
+        imagenumber:1,
+        imageQuantity:imageQuantity[this.state.projectnumber+1],
+        textQuantity:textQuantity[this.state.projectnumber+1]
+      })
+
+
+  if(this.state.projectnumber === 3 ){ // if the project number is reached reset the project number
+        this.setState({
+        projectnumber:1,
+        imageQuantity:imageQuantity[1],
+        textQuantity:textQuantity[1]
+      })
+    }
+  }
+
+
+  isLoading(){
+   this.setState({isLoading:false})
+  }
 
   handleClick(square){
     this.setState({isLoading:true})
@@ -105,91 +194,6 @@ class Portfolio extends React.Component {
 
 
   }}
-  handleCircleClick(number,type){
-    type === 'image' ? this.setState({imagenumber:parseInt(number,10)}) : this.setState({textnumber:parseInt(number,10)})
-  }
-  cycle(index){
-
-    let order = [9,3,7,11,8,9,1]
-    let orderText = [2,2,2,2,2,2,5]
-    if (index >= order.length) {
-      this.setState({
-        imagenumber:1
-      })
-        return;
-    }
-
-    console.log(order[index]);
-    this.setState({
-      imagenumber:order[index],
-      textnumber:orderText[index]
-
-    })
-    index += 1;
-    setTimeout(this.cycle.bind({}, index), 1300);
-
-  }
-
-  handleInfo(){
-       this.setState({
-       projectnumber:0,
-       textnumber:1,
-       imagenumber:1,
-       imageQuantity:11,
-       textQuantity:5,
-     })
- }
-  handlePrevious(){
-    let imageQuantity = [12,11,7,10];
-    let textQuantity = [5,10,6,10];
-        this.setState({
-        projectnumber:this.state.projectnumber-1,
-        textnumber:1,
-        imagenumber:1,
-        imageQuantity:imageQuantity[this.state.projectnumber-1],
-        textQuantity:textQuantity[this.state.projectnumber-1]
-      })
-
-  if(this.state.projectnumber === 3 ){ // if the project number is reached reset the project number
-        this.setState({
-        projectnumber:2,
-        imageQuantity:imageQuantity[2],
-        textQuantity:textQuantity[2]
-      })
-    }
-  if(this.state.projectnumber === 1 ){ // if the project number is reached reset the project number
-        this.setState({
-        projectnumber:3,
-        imageQuantity:imageQuantity[3],
-        textQuantity:textQuantity[3]
-      })
-    }
-  }
-  handleNext(){
-    let imageQuantity = [12,11,7,10];
-    let textQuantity = [5,10,6,10];
-
-
-        this.setState({
-        projectnumber:this.state.projectnumber+1,
-        textnumber:1,
-        imagenumber:1,
-        imageQuantity:imageQuantity[this.state.projectnumber+1],
-        textQuantity:textQuantity[this.state.projectnumber+1]
-      })
-
-
-  if(this.state.projectnumber === 3 ){ // if the project number is reached reset the project number
-        this.setState({
-        projectnumber:1,
-        imageQuantity:imageQuantity[1],
-        textQuantity:textQuantity[1]
-      })
-    }
-  }
-  isLoading(){
-   this.setState({isLoading:false})
-  }
 
   render() {
 
@@ -233,7 +237,8 @@ class Portfolio extends React.Component {
 
 
            <NavButton value = {this.state} config = {config}
-           onClick={() => this.handleClick('project')} play={()=>this.cycle(0)} next={()=> this.handleNext()} prev={()=> this.handlePrevious()} info={()=> this.handleInfo()}/>
+      
+           play={()=>this.cycle(0)} next={()=> this.handleNext()} prev={()=> this.handlePrevious()} info={()=> this.handleInfo()}/>
 
 
 
