@@ -3,8 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import Square from './Components/Square'
-import NavButton from './Components/NavButton'
 import Circle from './Components/Circle'
+import SquareWide from './Components/SquareWide'
+import CircleWide from './Components/CircleWide'
+
+import NavButton from './Components/NavButton'
+
 
 class Portfolio extends React.Component {
 
@@ -16,7 +20,7 @@ class Portfolio extends React.Component {
       projectnumber:0,
       width: 0,
       height: 0,
-      imageQuantity:12,
+      imageQuantity:10,
       textQuantity:5,
       isLoading:true,
       count:0
@@ -73,7 +77,7 @@ class Portfolio extends React.Component {
        projectnumber:0,
        textnumber:1,
        imagenumber:1,
-       imageQuantity:12,
+       imageQuantity:11,
        textQuantity:5,
      })
  }
@@ -146,7 +150,7 @@ class Portfolio extends React.Component {
         if(this.state.imagenumber === this.state.imageQuantity){
           if(this.state.projectnumber===0){
             this.setState({
-            imagenumber:3
+            imagenumber:2
             })
           }else{
             this.setState({
@@ -170,7 +174,7 @@ class Portfolio extends React.Component {
         if(this.state.textnumber === this.state.textQuantity ){
           if(this.state.projectnumber===0){
             this.setState({
-            textnumber:2
+            textnumber:1
             })
           }else{
             this.setState({
@@ -204,7 +208,7 @@ class Portfolio extends React.Component {
            circleWidth = this.state.width/.9-widthConstant
            config = 'column'
          }else {
-           squareWidth = this.state.width/2-widthConstant
+           squareWidth = this.state.width
            circleWidth = this.state.width/2.5-widthConstant
            config = 'row'
          }
@@ -224,22 +228,13 @@ class Portfolio extends React.Component {
            'paddingTop': 30
            }}>
 
-             <Square value = {this.state} type = {'image'} width = {squareWidth}
+             <SquareWide value = {this.state} type = {'image'} width = {squareWidth}
              onClick={() => this.handleClick('image')} loading = {() =>this.isLoading()}/>
-             <Circle quantity = {this.state.imageQuantity} number = {this.state.imagenumber} width= {circleWidth} type ={'image'}
+             <CircleWide quantity = {this.state.imageQuantity} number = {this.state.imagenumber} width= {circleWidth} type ={'image'}
              updateParentComponent={this.handleCircleClick}/>
            </div>
 
-           <div
-           style = {{
-           'paddingTop': 30
-           }}>
-             <Square value = {this.state} type = {'text'} width = {squareWidth}
-             onClick={() => this.handleClick('text')} />
 
-             <Circle quantity = {this.state.textQuantity} number = {this.state.textnumber} width= {circleWidth} type ={'text'}
-             updateParentComponent={this.handleCircleClick}/>
-           </div>
 
            <NavButton value = {this.state} config = {config}
            onClick={() => this.handleClick('project')} play={()=>this.cycle(0)} next={()=> this.handleNext()} prev={()=> this.handlePrevious()} info={()=> this.handleInfo()}/>
