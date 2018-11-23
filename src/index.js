@@ -17,7 +17,7 @@ class Portfolio extends React.Component {
       width: 0,
       height: 0,
       imageQuantity:10,
-      textQuantity:3,
+      textQuantity:2,
       isLoading:true,
       count:0
     };
@@ -170,7 +170,7 @@ class Portfolio extends React.Component {
         if(this.state.textnumber === this.state.textQuantity ){
           if(this.state.projectnumber===0){
             this.setState({
-            textnumber:2
+            textnumber:1
             })
           }else{
             this.setState({
