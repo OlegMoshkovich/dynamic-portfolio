@@ -74,14 +74,14 @@ class Portfolio extends React.Component {
        textnumber:1,
        imagenumber:1,
        imageQuantity:10,
-       textQuantity:5,
+       textQuantity:2,
      })
  }
 
 
   handlePrevious(){
     let imageQuantity = [10,11,7,10];
-    let textQuantity = [5,10,6,10];
+    let textQuantity = [2,10,6,10];
         this.setState({
         projectnumber:this.state.projectnumber-1,
         textnumber:1,
@@ -108,7 +108,7 @@ class Portfolio extends React.Component {
 
   handleNext(){
     let imageQuantity = [10,11,7,10];
-    let textQuantity = [5,10,6,10];
+    let textQuantity = [2,10,6,10];
 
 
         this.setState({
