@@ -200,7 +200,7 @@ class Portfolio extends React.Component {
          let config;
 
          if(aspectRatio>1.4){
-           squareWidth = this.state.width/1.1-widthConstant
+           squareWidth = this.state.width/1.3-widthConstant
            circleWidth = this.state.width/.9-widthConstant
            config = 'column'
          }else {
