@@ -12,17 +12,10 @@ class Circle extends Component{
   }
 
   render(){
-
-
     let width = this.props.width/20
     let widthSelected = this.props.width/20
     let circleItems = [];
-
-
-
-
       for (var i = 1; i < this.props.quantity+1; i++) {
-
         if(i === parseInt(this.props.number,10)){
           circleItems.push(
                 <img alt= {`${i}`} key = {i}  className = "square" onClick ={(data,type) =>  this.props.updateParentComponent(data.target.alt,this.props.type)}  style = {{width:widthSelected, height:widthSelected, margin:2}}
